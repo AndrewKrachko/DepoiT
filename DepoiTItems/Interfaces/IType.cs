@@ -1,7 +1,6 @@
 ﻿namespace DepoiTItems
 {
-    public interface IStorage : IItem
+    public interface IType : IObject
     {
-
     }
 }

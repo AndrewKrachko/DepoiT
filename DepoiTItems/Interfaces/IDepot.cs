@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IDepot : IItem
+    public interface IDepot : IObject
     {
         IAddress Adress { get; set; }
         IGeoCoordinates Coordinates { get; set; }

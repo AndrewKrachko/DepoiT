@@ -4,9 +4,8 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IItem
+    interface IPhoto : IObject
     {
-        int Id { get; set; }
-        string Name { get; set; }
+
     }
 }

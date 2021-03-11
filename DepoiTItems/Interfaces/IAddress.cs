@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IAddress : IItem
+    public interface IAddress : IObject
     {
         string Country { get; set; }
         string District { get; set; }
