@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IPhoto : IObject
+    public interface IFieldSetPattern<T> : IFieldPattern<T>
     {
-
+        IEnumerable<T> ValueSet { get; set; }
     }
 }

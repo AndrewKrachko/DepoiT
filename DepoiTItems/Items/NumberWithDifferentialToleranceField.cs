@@ -4,8 +4,7 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IPhoto : IObject
+    public class NumberWithDifferentialToleranceField : NumberField
     {
-
     }
 }

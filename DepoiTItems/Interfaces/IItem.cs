@@ -1,7 +1,10 @@
-﻿namespace DepoiTItems
+﻿using System.Collections.Generic;
+
+namespace DepoiTItems
 {
     public interface IItem : IObject
     {
-        IType Type { get; set; }
+        IPattern Pattern { get; set; }
+        IEnumerable<IField> Fields { get; set; }
     }
 }
