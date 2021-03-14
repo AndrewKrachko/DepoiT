@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTRepository", "DepoiTR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTFakeDataStorage", "DepoiTFakeDataStorage\DepoiTFakeDataStorage.csproj", "{48B41863-4EEE-4665-A6DB-262FBAA430D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{288699BE-A27D-4937-8D9D-EE4713FA8DD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{48B41863-4EEE-4665-A6DB-262FBAA430D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48B41863-4EEE-4665-A6DB-262FBAA430D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48B41863-4EEE-4665-A6DB-262FBAA430D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288699BE-A27D-4937-8D9D-EE4713FA8DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288699BE-A27D-4937-8D9D-EE4713FA8DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288699BE-A27D-4937-8D9D-EE4713FA8DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288699BE-A27D-4937-8D9D-EE4713FA8DD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
