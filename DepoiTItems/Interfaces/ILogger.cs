@@ -4,9 +4,8 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IRepository
+    public interface ILogger
     {
-        bool GetUserByName(string name, out IUser user);
-
+        void Log(string message);
     }
 }
