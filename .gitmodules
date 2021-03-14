@@ -1,4 +1,4 @@
-[submodule "D:/Work/Programming/DepoiT/Logger"]
-	path = D:/Work/Programming/DepoiT/Logger
+[submodule "Logger"]
+	path = Logger
 	url = https://github.com/AndrewKrachko/Logger.git
 	branch = master
