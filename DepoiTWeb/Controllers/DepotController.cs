@@ -7,21 +7,10 @@ using System.Threading.Tasks;
 
 namespace DepoiTWeb.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class DepotController : Controller
     {
-        // GET: DepotController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: DepotController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DepotController/Create
         public ActionResult Create()
         {
             return View();
@@ -48,40 +37,10 @@ namespace DepoiTWeb.Controllers
             return View();
         }
 
-        // POST: DepotController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: DepotController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
-        }
-
-        // POST: DepotController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
