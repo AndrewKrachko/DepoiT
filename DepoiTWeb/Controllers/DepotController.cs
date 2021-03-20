@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DepoiTItems;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,36 +12,24 @@ namespace DepoiTWeb.Controllers
     [ApiController]
     public class DepotController : Controller
     {
-        public ActionResult Create()
+        private readonly ICore _core;
+        private readonly ILogger _logger;
+
+        public DepotController(ICore core, ILogger logger)
         {
-            return View();
+            _core = core;
+            _logger = logger;
         }
 
-        // POST: DepotController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+        public IActionResult GetDepot(int id, UserModel userModel)
         {
-            try
+            if (_core.GetDepot(id, userModel.GetUser(), out var depot))
             {
-                return RedirectToAction(nameof(Index));
+                return Ok(depot);
             }
-            catch
-            {
-                return View();
-            }
-        }
+            return BadRequest("Not Found");
 
-        // GET: DepotController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // GET: DepotController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
         }
     }
 }

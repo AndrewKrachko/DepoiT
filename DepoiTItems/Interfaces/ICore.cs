@@ -1,7 +1,8 @@
-﻿using DepoiTItems;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace DepoiTCore
+namespace DepoiTItems
 {
     public interface ICore
     {
