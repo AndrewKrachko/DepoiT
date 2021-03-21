@@ -4,8 +4,9 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface ILogger
+    public enum DataProvider
     {
-        void Log(string message);
+        FakeDataProvider,
+        MsSqlServer2016
     }
 }

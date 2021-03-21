@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTItems", "DepoiTItems\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTWeb", "DepoiTWeb\DepoiTWeb.csproj", "{F7EA3C80-4E89-452D-955D-96F9DB9C22F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTRepository", "DepoiTRepository\DepoiTRepository.csproj", "{98710CCC-603D-477B-9B09-495CAE4DD0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTRepository", "DepoiTRepository\DepoiTRepository.csproj", "{98710CCC-603D-477B-9B09-495CAE4DD0A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTFakeDataStorage", "DepoiTFakeDataStorage\DepoiTFakeDataStorage.csproj", "{48B41863-4EEE-4665-A6DB-262FBAA430D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTFakeDataStorage", "DepoiTFakeDataStorage\DepoiTFakeDataStorage.csproj", "{48B41863-4EEE-4665-A6DB-262FBAA430D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{288699BE-A27D-4937-8D9D-EE4713FA8DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csproj", "{288699BE-A27D-4937-8D9D-EE4713FA8DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTCore", "DepoiTCore\DepoiTCore.csproj", "{2092C366-43C0-47E1-8CBB-7F80CF26B47F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTCore", "DepoiTCore\DepoiTCore.csproj", "{2092C366-43C0-47E1-8CBB-7F80CF26B47F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configurator", "Configurator\Configurator.csproj", "{3B94B945-71D0-4743-AAAB-B813344D0885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2092C366-43C0-47E1-8CBB-7F80CF26B47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2092C366-43C0-47E1-8CBB-7F80CF26B47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2092C366-43C0-47E1-8CBB-7F80CF26B47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B94B945-71D0-4743-AAAB-B813344D0885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B94B945-71D0-4743-AAAB-B813344D0885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B94B945-71D0-4743-AAAB-B813344D0885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B94B945-71D0-4743-AAAB-B813344D0885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
