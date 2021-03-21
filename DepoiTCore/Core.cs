@@ -1,4 +1,6 @@
-﻿using DepoiTItems;
+﻿using DepoitConfigurator;
+using DepoiTItems;
+using Logger;
 using System;
 using System.Collections.Generic;
 
@@ -9,10 +11,10 @@ namespace DepoiTCore
         private readonly IRepository _repository;
         private readonly ILogger _logger;
 
-        public Core(IRepository repository, ILogger logger)
+        public Core()
         {
-            _repository = repository;
-            _logger = logger;
+            _repository = Configurator.GetRepository();
+            _logger = Configurator.GetLogger();
         }
 
         public bool GetDepot(int id, IUser user, out IDepot depot)

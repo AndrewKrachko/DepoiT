@@ -1,4 +1,5 @@
 ﻿using DepoiTItems;
+using Logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,7 +22,7 @@ namespace DepoiTWeb.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult GetDepot(int id, UserModel userModel)
         {
             if (_core.GetDepot(id, userModel.GetUser(), out var depot))

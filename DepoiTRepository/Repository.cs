@@ -8,6 +8,16 @@ namespace DepoiTRepository
     {
         private IDataStorage _dataStorge;
 
+        public Repository(IDataStorage dataStorage)
+        {
+            _dataStorge = dataStorage;
+        }
+
+        public void SetDataStorage(IDataStorage dataStorage)
+        {
+            _dataStorge = dataStorage;
+        }
+
         public bool GetDepot(int id, IUser user, out IDepot depot)
         {
             try

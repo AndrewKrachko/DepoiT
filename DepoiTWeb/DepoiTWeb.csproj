@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DepoiTCore\DepoiTCore.csproj" />
     <ProjectReference Include="..\DepoiTItems\DepoiTItems.csproj" />
+    <ProjectReference Include="..\Logger\Logger.csproj" />
   </ItemGroup>
 
 

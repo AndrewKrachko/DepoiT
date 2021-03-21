@@ -1,3 +1,5 @@
+using DepoiTCore;
+using DepoiTItems;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,8 @@ namespace DepoiTWeb
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo());
             });
+            services.AddSingleton<ICore, Core>();
+            services.AddSingleton<Logger.ILogger, Logger.Logger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
