@@ -10,7 +10,7 @@ namespace DepoitConfigurator
 {
     public static class Configurator
     {
-        private static string _path = "congig.xml";
+        private static string _path = "config.xml";
         private static IRepository _repository;
         private static ILogger _logger;
 

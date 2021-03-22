@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <DataProvider>
+    <!--<Reciever>EF</Reciever>
+  <Distribution>Microsoft SQL Server 2016</Distribution>-->
+    <!--DESKTOP-3BAAIFR\SQLEXPRESS-->
+    <!--WSLI002\SQLEXPRESS-->
+    <Provider>Fake</Provider>
+    <!--<DataBase>WebShopDb</DataBase>
+  <Login>sa</Login>
+  <Password>Password123</Password>-->
+  </DataProvider>
+  <LoggingLevel>Info</LoggingLevel>
+</Config>

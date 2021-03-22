@@ -11,14 +11,14 @@ namespace DepoitConfigurator
         {
             var _configFile = XDocument.Load(path);
 
-            return _configFile.Element("DataProvider").Elements().Select(e => new Tuple<string, string>(e.Name.ToString(), e.Value));
+            return _configFile.Element("Config").Element("DataProvider").Elements().Select(e => new Tuple<string, string>(e.Name.ToString(), e.Value));
         }
 
         public static string GetLoggingLevel(string path)
         {
             var _configFile = XDocument.Load(path);
 
-            return _configFile.Element("LoggingLevel").Value;
+            return _configFile.Element("Config").Element("LoggingLevel").Value;
         }
     }
 }
