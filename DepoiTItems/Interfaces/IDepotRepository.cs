@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DepoiTItems
 {
-    public interface ICore
+    public interface IDepotRepository
     {
         bool GetDepot(int id, string userToken, out IDepot depot);
         bool GetDepots(string userToken, out IEnumerable<IDepot> depots);

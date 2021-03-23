@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DepoiTRepository
 {
-    public class Repository : IRepository
+    public partial class Repository : IRepository
     {
         private IDataStorage _dataStorge;
 
@@ -18,49 +18,30 @@ namespace DepoiTRepository
             _dataStorge = dataStorage;
         }
 
-        public bool GetDepot(int id, string userToken, out IDepot depot)
-        {
-            try
-            {
-                depot = _dataStorge.GetDepot(id, userToken);
-
-                if (depot != null)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public bool GetDepots(string userToken, out IEnumerable<IDepot> depots)
-        {
-            try
-            {
-                depots = _dataStorge.GetDepots(userToken);
-
-                if (depots != null)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public bool GetUserByName(string name, out IUser user)
         {
             try
             {
                 user = _dataStorge.GetUserByName(name);
+
+                if (user != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetUserByToken(string userToken, out IUser user)
+        {
+            try
+            {
+                user = _dataStorge.GetUserByToken(userToken);
 
                 if (user != null)
                 {

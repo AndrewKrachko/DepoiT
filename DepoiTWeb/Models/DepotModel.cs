@@ -15,5 +15,14 @@ namespace DepoiTWeb
         public IEnumerable<IStorage> Storages { get; set; }
         public bool IsPublic { get; set; }
         public UserModel Owner { get; set; }
+
+        public IDepot GetDepot() => new Depot() { 
+            Id = Id, 
+            Name = Name, 
+            Adress = Adress, 
+            Coordinates = Coordinates, 
+            Storages = Storages, 
+            IsPublic = IsPublic, 
+            Owner = Owner.GetUser() };
     }
 }

@@ -51,5 +51,18 @@ namespace DepoiTFakeDataStorage
         {
             return _users.FirstOrDefault(u => u.Name == name);
         }
+
+        public IUser GetUserByToken(string userToken)
+        {
+            return _users.FirstOrDefault(u => u.UserToken == userToken);
+        }
+
+        public int SetDepot(IDepot depot)
+        {
+            depot.Id = _depots.Count;
+            _depots.Add((Depot)depot);
+
+            return _depots.FirstOrDefault(d => d == depot).Id;
+        }
     }
 }

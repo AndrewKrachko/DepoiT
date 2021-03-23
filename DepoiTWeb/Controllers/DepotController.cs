@@ -43,5 +43,16 @@ namespace DepoiTWeb.Controllers
             }
             return BadRequest($"Depots not found");
         }
+
+        [Route("setdepots")]
+        [HttpPost]
+        public IActionResult SetDepot([FromBody] DepotModel depotModel)
+        {
+            if(_core.SetDepot(depotModel.GetDepot(), out var depot))
+            {
+                return Ok(depot);
+            }
+            return BadRequest($"Can not create depot");
+        }
     }
 }
