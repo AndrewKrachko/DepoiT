@@ -22,15 +22,26 @@ namespace DepoiTWeb.Controllers
             _logger = logger;
         }
 
+        [Route("getdepot")]
         [HttpPost]
-        public IActionResult GetDepot(int id, UserModel userModel)
+        public IActionResult GetDepot(int id, [FromBody] string userToken)
         {
-            if (_core.GetDepot(id, userModel.GetUser(), out var depot))
+            if (_core.GetDepot(id, userToken, out var depot))
             {
                 return Ok(depot);
             }
-            return BadRequest("Not Found");
+            return BadRequest($"Depot not found");
+        }
 
+        [Route("getdepots")]
+        [HttpPost]
+        public IActionResult GetDepots([FromBody] string userToken)
+        {
+            if (_core.GetDepots(userToken, out var depots))
+            {
+                return Ok(depots);
+            }
+            return BadRequest($"Depots not found");
         }
     }
 }

@@ -18,11 +18,11 @@ namespace DepoiTRepository
             _dataStorge = dataStorage;
         }
 
-        public bool GetDepot(int id, IUser user, out IDepot depot)
+        public bool GetDepot(int id, string userToken, out IDepot depot)
         {
             try
             {
-                depot = _dataStorge.GetDepot(id, user);
+                depot = _dataStorge.GetDepot(id, userToken);
 
                 if (depot != null)
                 {
@@ -37,9 +37,23 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetDepots(IUser user, out IEnumerable<IDepot> depots)
+        public bool GetDepots(string userToken, out IEnumerable<IDepot> depots)
         {
-            throw new NotImplementedException();
+            try
+            {
+                depots = _dataStorge.GetDepots(userToken);
+
+                if (depots != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool GetUserByName(string name, out IUser user)

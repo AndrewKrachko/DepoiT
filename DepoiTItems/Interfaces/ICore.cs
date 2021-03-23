@@ -6,7 +6,7 @@ namespace DepoiTItems
 {
     public interface ICore
     {
-        bool GetDepot(int id, IUser user, out IDepot depot);
-        bool GetDepots(IUser user, out IEnumerable<IDepot> depots);
+        bool GetDepot(int id, string userToken, out IDepot depot);
+        bool GetDepots(string userToken, out IEnumerable<IDepot> depots);
     }
 }

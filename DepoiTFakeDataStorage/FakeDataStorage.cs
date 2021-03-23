@@ -18,8 +18,8 @@ namespace DepoiTFakeDataStorage
         {
             _users = new List<User>()
             {
-                new User() { Id=0, Name="admin", Password = "123", Email="admin@mail.com" },
-                new User() { Id=1, Name="user", Password = "321", Email="user@mail.com" }
+                new User() { Id=0, Name="admin", Password = "123", UserToken = "87h4vhusd1", Email="admin@mail.com" },
+                new User() { Id=1, Name="user", Password = "321", UserToken = "02vtr39sfd", Email="user@mail.com" }
             };
 
             _addresses = new List<Address>()
@@ -37,14 +37,14 @@ namespace DepoiTFakeDataStorage
             };
         }
 
-        public IDepot GetDepot(int id, IUser user)
+        public IDepot GetDepot(int id, string userToken)
         {
-            return _depots.FirstOrDefault(d => d.Owner == user && d.Id == id);
+            return _depots.FirstOrDefault(d => d.Owner.UserToken == userToken && d.Id == id);
         }
 
-        public IEnumerable<IDepot> GetDepots(IUser user)
+        public IEnumerable<IDepot> GetDepots(string userToken)
         {
-            return _depots.FindAll(d => d.Owner == user); 
+            return _depots.FindAll(d => d.Owner.UserToken == userToken); 
         }
 
         public IUser GetUserByName(string name)

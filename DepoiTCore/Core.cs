@@ -17,9 +17,9 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
-        public bool GetDepot(int id, IUser user, out IDepot depot)
+        public bool GetDepot(int id, string userToken, out IDepot depot)
         {
-            if(_repository.GetDepot(id, user, out depot))
+            if (_repository.GetDepot(id, userToken, out depot))
             {
                 return true;
             }
@@ -29,9 +29,9 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetDepots(IUser user, out IEnumerable<IDepot> depots)
+        public bool GetDepots(string userToken, out IEnumerable<IDepot> depots)
         {
-            if (_repository.GetDepots(user, out depots))
+            if (_repository.GetDepots(userToken, out depots))
             {
                 return true;
             }

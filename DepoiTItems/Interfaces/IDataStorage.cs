@@ -8,7 +8,7 @@ namespace DepoiTItems
     public interface IDataStorage
     {
         IUser GetUserByName(string name);
-        IDepot GetDepot(int id, IUser user);
-        IEnumerable<IDepot>  GetDepots(IUser user);
+        IDepot GetDepot(int id, string userToken);
+        IEnumerable<IDepot>  GetDepots(string userToken);
     }
 }
