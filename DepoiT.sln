@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTCore", "DepoiTCore\DepoiTCore.csproj", "{2092C366-43C0-47E1-8CBB-7F80CF26B47F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configurator", "Configurator\Configurator.csproj", "{3B94B945-71D0-4743-AAAB-B813344D0885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configurator", "Configurator\Configurator.csproj", "{3B94B945-71D0-4743-AAAB-B813344D0885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringGenerator", "StringGenerator\StringGenerator.csproj", "{9BC0D25E-EFC3-4200-9505-F5B6B7BF64C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3B94B945-71D0-4743-AAAB-B813344D0885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B94B945-71D0-4743-AAAB-B813344D0885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B94B945-71D0-4743-AAAB-B813344D0885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC0D25E-EFC3-4200-9505-F5B6B7BF64C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC0D25E-EFC3-4200-9505-F5B6B7BF64C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC0D25E-EFC3-4200-9505-F5B6B7BF64C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC0D25E-EFC3-4200-9505-F5B6B7BF64C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

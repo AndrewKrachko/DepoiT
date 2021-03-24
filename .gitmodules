@@ -2,3 +2,7 @@
 	path = Logger
 	url = https://github.com/AndrewKrachko/Logger.git
 	branch = master
+[submodule "StringGenerator"]
+	path = StringGenerator
+	url = https://github.com/AndrewKrachko/StringGenerator.git
+	branch = master
