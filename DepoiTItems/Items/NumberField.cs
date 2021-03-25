@@ -11,5 +11,6 @@ namespace DepoiTItems
         public double Value { get; set; }
         public bool Validate { get; set; }
         public IFieldPattern<double> FieldPattern { get; set; }
+        public string ObjectToken { get; set; }
     }
 }

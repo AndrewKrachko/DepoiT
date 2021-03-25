@@ -16,5 +16,6 @@ namespace DepoiTItems
         public string BuildingIndex { get; set; } = "";
         public int Apartment { get; set; } = 14;
         public string ApartmentIndex { get; set; } = "B";
+        public string ObjectToken { get; set; }
     }
 }

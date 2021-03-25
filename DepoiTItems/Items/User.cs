@@ -12,5 +12,6 @@ namespace DepoiTItems
         public string Email { get; set; }
         public string Password { get; set; }
         public IPhoto Avatar { get; set; }
+        public string ObjectToken { get; set; }
     }
 }
