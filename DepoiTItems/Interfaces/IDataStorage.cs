@@ -9,8 +9,11 @@ namespace DepoiTItems
     {
         IUser GetUserByName(string name);
         IUser GetUserByToken(string userToken);
-        IDepot GetDepot(int id, string userToken);
-        IEnumerable<IDepot>  GetDepots(string userToken);
-        int SetDepot(IDepot depot);
+        
+        IEnumerable<string> GetDepotTokens(IEnumerable<int> id);
+        IEnumerable<string> GetDepotTokensByUser(IEnumerable<int> userId);
+        IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens);
+        
+        string SetDepot(IDepot depot);
     }
 }

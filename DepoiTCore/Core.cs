@@ -3,6 +3,7 @@ using DepoiTItems;
 using Logger;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DepoiTCore
 {
@@ -17,21 +18,23 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
-        public bool GetDepot(int id, string userToken, out IDepot depot)
+        public bool GetDepot(int id, out IDepot depot)
         {
-            if (_repository.GetDepot(id, userToken, out depot))
+            if (_repository.GetDepotsByUser(id, out var depots))
             {
+                depot = depots.FirstOrDefault();
                 return true;
             }
             else
             {
+                depot = null;
                 return false;
             }
         }
 
-        public bool GetDepots(string userToken, out IEnumerable<IDepot> depots)
+        public bool GetDepots(int userId, out IEnumerable<IDepot> depots)
         {
-            if (_repository.GetDepots(userToken, out depots))
+            if (_repository.GetDepotsByUser(userId, out depots))
             {
                 return true;
             }

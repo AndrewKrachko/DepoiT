@@ -1,16 +1,18 @@
 ﻿using DepoiTItems;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DepoiTRepository
 {
-    public partial class Repository : IRepository
+    public partial class Repository
     {
-        public bool GetDepot(int id, string userToken, out IDepot depot)
+        public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depot)
         {
             try
             {
-                depot = _dataStorge.GetDepot(id, userToken);
+                var depotTokens = _dataStorge.GetDepotTokens(id);
+                depot = _dataStorge.GetDepots(depotTokens);
 
                 if (depot != null)
                 {
@@ -25,11 +27,12 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetDepots(string userToken, out IEnumerable<IDepot> depots)
+        public bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots)
         {
             try
             {
-                depots = _dataStorge.GetDepots(userToken);
+                var depotTokens = _dataStorge.GetDepotTokensByUser(new[] { userId });
+                depots = _dataStorge.GetDepots(depotTokens);
 
                 if (depots != null)
                 {
@@ -50,8 +53,8 @@ namespace DepoiTRepository
             {
                 var userToken = depot.Owner.UserToken;
                 depot.Owner = _dataStorge.GetUserByToken(userToken);
-                var id = _dataStorge.SetDepot(depot);
-                createdDepot = _dataStorge.GetDepot(id, userToken);
+                var itemToken = _dataStorge.SetDepot(depot);
+                createdDepot = _dataStorge.GetDepots(new[] { itemToken }).FirstOrDefault();
 
                 if (createdDepot != null)
                 {

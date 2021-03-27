@@ -4,8 +4,8 @@ namespace DepoiTItems
 {
     public interface IDepotRepository
     {
-        bool GetDepot(int id, string userToken, out IDepot depot);
-        bool GetDepots(string userToken, out IEnumerable<IDepot> depots);
+        bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depot);
+        bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots);
         bool SetDepot(IDepot depot, out IDepot createdDepot);
     }
 }

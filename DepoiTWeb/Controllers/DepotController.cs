@@ -24,9 +24,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("getdepot")]
         [HttpPost]
-        public IActionResult GetDepot(int id, [FromBody] string userToken)
+        public IActionResult GetDepot([FromBody] int id)
         {
-            if (_core.GetDepot(id, userToken, out var depot))
+            if (_core.GetDepot(id, out var depot))
             {
                 return Ok(depot);
             }
@@ -35,9 +35,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("getdepots")]
         [HttpPost]
-        public IActionResult GetDepots([FromBody] string userToken)
+        public IActionResult GetDepots([FromBody] int userId)
         {
-            if (_core.GetDepots(userToken, out var depots))
+            if (_core.GetDepots(userId, out var depots))
             {
                 return Ok(depots);
             }

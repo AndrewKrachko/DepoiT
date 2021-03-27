@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DepoiTRepository\DepoiTRepository.csproj" />
+    <ProjectReference Include="..\StringGenerator\StringGenerator\StringGenerator.csproj" />
   </ItemGroup>
 
 </Project>
