@@ -57,7 +57,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool UpdateDepot(int id, IDepot depot, out IDepot updatedDepot)
+        public bool UpdateDepot(IDepot depot, out IDepot updatedDepot)
         {
             try
             {

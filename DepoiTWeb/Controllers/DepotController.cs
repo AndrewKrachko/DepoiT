@@ -48,7 +48,18 @@ namespace DepoiTWeb.Controllers
         [HttpPost]
         public IActionResult SetDepot([FromBody] DepotModel depotModel)
         {
-            if(_core.SetDepot(depotModel.GetDepot(), out var depot))
+            if (_core.SetDepot(depotModel.GetDepot(), out var depot))
+            {
+                return Ok(depot);
+            }
+            return BadRequest($"Can not create depot");
+        }
+
+        [Route("updatedepot")]
+        [HttpPost]
+        public IActionResult UpdateDepot([FromBody] DepotModel depotModel)
+        {
+            if (_core.UpdateDepot(depotModel.GetDepot(), out var depot))
             {
                 return Ok(depot);
             }

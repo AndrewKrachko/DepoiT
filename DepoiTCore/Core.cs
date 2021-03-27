@@ -66,5 +66,23 @@ namespace DepoiTCore
             createdDepot = null;
             return false;
         }
+
+        public bool UpdateDepot(IDepot depot, out IDepot createdDepot)
+        {
+            var userToken = depot.Owner.UserToken;
+
+            if (_repository.GetUserByToken(userToken, out var user))
+            {
+                depot.Owner = user;
+
+                if (_repository.UpdateDepot(depot, out createdDepot))
+                {
+                    return true;
+                }
+            }
+
+            createdDepot = null;
+            return false;
+        }
     }
 }

@@ -76,16 +76,12 @@ namespace DepoiTFakeDataStorage
             return itemToken;
         }
 
-        /// <summary>
-        /// Enshure that Id and ObjectToken are equal to Id and ObjectToken stored in database object.
-        /// </summary>
-        /// <param name="depot">Updated object</param>
-        /// <returns></returns>
+
         public string UpdateDepot(IDepot depot)
         {
             string itemToken = GenerateToken(_depots);
 
-            var databaseItem = _depots.FirstOrDefault(d => d.ObjectToken == depot.ObjectToken && d.Id == depot.Id);
+            var databaseItem = _depots.FirstOrDefault(d => d.Id == depot.Id);
 
             if (databaseItem.Name != depot.Name) databaseItem.Name = depot.Name;
             if (databaseItem.Adress != depot.Adress) databaseItem.Adress = depot.Adress;
