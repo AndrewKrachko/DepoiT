@@ -13,12 +13,7 @@ namespace DepoiTRepository
             {
                 depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokens(id), _dataStorge.GetDepots);
 
-                if (depots != null)
-                {
-                    return true;
-                }
-
-                return false;
+                return depots != null;
             }
             catch (Exception ex)
             {
@@ -32,12 +27,7 @@ namespace DepoiTRepository
             {
                 depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokensByUser(new[] { userId }), _dataStorge.GetDepots);
 
-                if (depots != null)
-                {
-                    return true;
-                }
-
-                return false;
+                return depots != null;
             }
             catch (Exception ex)
             {
@@ -49,17 +39,26 @@ namespace DepoiTRepository
         {
             try
             {
-                var userToken = depot.Owner.UserToken;
-                depot.Owner = _dataStorge.GetUserByToken(userToken);
+
                 var itemToken = _dataStorge.SetDepot(depot);
-                createdDepot = _dataStorge.GetDepots(new[] { itemToken }).FirstOrDefault();
+                createdDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetDepots).FirstOrDefault();
 
-                if (createdDepot != null)
-                {
-                    return true;
-                }
+                return createdDepot != null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-                return false;
+        public bool UpdateDepot(int id, IDepot depot, out IDepot updatedDepot)
+        {
+            try
+            {
+                var itemToken = _dataStorge.UpdateDepot(depot);
+                updatedDepot = _dataStorge.GetDepots(new[] { itemToken }).FirstOrDefault();
+
+                return updatedDepot != null;
             }
             catch (Exception ex)
             {

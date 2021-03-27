@@ -15,5 +15,7 @@ namespace DepoiTItems
         IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens);
         
         string SetDepot(IDepot depot);
+
+        string UpdateDepot(IDepot depot);
     }
 }
