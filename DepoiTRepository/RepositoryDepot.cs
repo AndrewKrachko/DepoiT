@@ -7,14 +7,13 @@ namespace DepoiTRepository
 {
     public partial class Repository
     {
-        public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depot)
+        public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depots)
         {
             try
             {
-                var depotTokens = _dataStorge.GetDepotTokens(id);
-                depot = _dataStorge.GetDepots(depotTokens);
+                depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokens(id), _dataStorge.GetDepots);
 
-                if (depot != null)
+                if (depots != null)
                 {
                     return true;
                 }
@@ -31,8 +30,7 @@ namespace DepoiTRepository
         {
             try
             {
-                var depotTokens = _dataStorge.GetDepotTokensByUser(new[] { userId });
-                depots = _dataStorge.GetDepots(depotTokens);
+                depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokensByUser(new[] { userId }), _dataStorge.GetDepots);
 
                 if (depots != null)
                 {

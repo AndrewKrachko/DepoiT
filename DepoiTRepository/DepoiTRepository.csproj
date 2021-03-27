@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DepoiTItemChache\DepoiTCache\DepoiTCache.csproj" />
     <ProjectReference Include="..\DepoiTItems\DepoiTItems.csproj" />
   </ItemGroup>
 
