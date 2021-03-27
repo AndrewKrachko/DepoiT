@@ -7,6 +7,5 @@ namespace DepoiTItems
     public interface IRepository : IDepotRepository, IUserRepository
     {
         void SetDataStorage(IDataStorage dataStorage);
-
     }
 }

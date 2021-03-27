@@ -17,5 +17,7 @@ namespace DepoiTItems
         string SetDepot(IDepot depot);
 
         string UpdateDepot(IDepot depot);
+        
+        void DropDepot(int id);
     }
 }

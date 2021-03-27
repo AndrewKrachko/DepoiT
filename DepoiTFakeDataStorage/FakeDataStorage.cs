@@ -44,16 +44,25 @@ namespace DepoiTFakeDataStorage
             };
         }
 
+        public void DropDepot(int id)
+        {
+            var index = _depots.FindIndex(d => d.Id == id);
+            if (index != -1)
+            {
+                _depots.RemoveAt(index);
+            }
+        }
+
         public IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens) => _depots.FindAll(d => tokens.Contains(d.ObjectToken));
 
         public IEnumerable<string> GetDepotTokens(IEnumerable<int> id) => _depots.FindAll(d => id.Contains(d.Id)).Select(d => d.ObjectToken);
 
         public IEnumerable<string> GetDepotTokensByUser(IEnumerable<int> userId) => _depots.FindAll(d => userId.Contains(d.Owner.Id)).Select(d => d.ObjectToken);
 
-        public IUser GetUserByName(string name)=> _users.FirstOrDefault(u => u.Name == name);
-        
-        public IUser GetUserByToken(string userToken)=> _users.FirstOrDefault(u => u.UserToken == userToken);
-        
+        public IUser GetUserByName(string name) => _users.FirstOrDefault(u => u.Name == name);
+
+        public IUser GetUserByToken(string userToken) => _users.FirstOrDefault(u => u.UserToken == userToken);
+
 
         public string SetDepot(IDepot depot)
         {

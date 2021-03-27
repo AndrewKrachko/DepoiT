@@ -37,14 +37,14 @@ namespace DepoiTWeb.Controllers
         [HttpPost]
         public IActionResult GetDepots([FromBody] int userId)
         {
-            if (_core.GetDepots(userId, out var depots))
+            if (_core.GetDepotsByUser(userId, out var depots))
             {
                 return Ok(depots);
             }
             return BadRequest($"Depots not found");
         }
 
-        [Route("setdepots")]
+        [Route("setdepot")]
         [HttpPost]
         public IActionResult SetDepot([FromBody] DepotModel depotModel)
         {
@@ -53,6 +53,17 @@ namespace DepoiTWeb.Controllers
                 return Ok(depot);
             }
             return BadRequest($"Can not create depot");
+        }
+
+        [Route("dropdepot")]
+        [HttpPost]
+        public IActionResult DropDepot([FromBody] int id)
+        {
+            if(_core.DropDepot(id))
+            {
+                return Ok();
+            }
+            return BadRequest($"Can not drop depot");
         }
     }
 }

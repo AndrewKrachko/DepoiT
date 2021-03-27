@@ -7,6 +7,12 @@ namespace DepoiTRepository
 {
     public partial class Repository
     {
+        public bool DropDepot(int id)
+        {
+            _dataStorge.DropDepot(id);
+            return !_dataStorge.GetDepotTokens(new[] { id }).Any();
+        }
+
         public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depots)
         {
             try

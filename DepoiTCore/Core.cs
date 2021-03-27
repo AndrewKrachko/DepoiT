@@ -18,9 +18,14 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
+        public bool DropDepot(int id)
+        {
+            return _repository.DropDepot(id);
+        }
+
         public bool GetDepot(int id, out IDepot depot)
         {
-            if (_repository.GetDepotsByUser(id, out var depots))
+            if (_repository.GetDepots(new[] { id }, out var depots))
             {
                 depot = depots.FirstOrDefault();
                 return true;
@@ -32,7 +37,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetDepots(int userId, out IEnumerable<IDepot> depots)
+        public bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots)
         {
             if (_repository.GetDepotsByUser(userId, out depots))
             {
