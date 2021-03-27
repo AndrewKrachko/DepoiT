@@ -18,6 +18,11 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
+        public bool AddStoragesToDepot(IEnumerable<IStorage> storages)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool DropDepot(int id)
         {
             return _repository.DropDepot(id);
@@ -47,6 +52,16 @@ namespace DepoiTCore
             {
                 return false;
             }
+        }
+
+        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveStoragesFromDepot(IEnumerable<IStorage> storages)
+        {
+            throw new NotImplementedException();
         }
 
         public bool SetDepot(IDepot depot, out IDepot createdDepot)

@@ -71,5 +71,19 @@ namespace DepoiTRepository
                 throw ex;
             }
         }
+        public bool AddStoragesToDepot(IEnumerable<IStorage> storages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveStoragesFromDepot(IEnumerable<IStorage> storages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DepoiTFakeDataStorage
 {
-    public class FakeDataStorage : IDataStorage
+    public partial class FakeDataStorage : IDataStorage
     {
         private readonly int _tokenLength;
         private char[] _tokenCharset;
@@ -61,55 +61,9 @@ namespace DepoiTFakeDataStorage
             };
         }
 
-        public void DropDepot(int id)
-        {
-            var index = _depots.FindIndex(d => d.Id == id);
-            if (index != -1)
-            {
-                _depots.RemoveAt(index);
-            }
-        }
-
-        public IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens) => _depots.FindAll(d => tokens.Contains(d.ObjectToken));
-
-        public IEnumerable<string> GetDepotTokens(IEnumerable<int> id) => _depots.FindAll(d => id.Contains(d.Id)).Select(d => d.ObjectToken);
-
-        public IEnumerable<string> GetDepotTokensByUser(IEnumerable<int> userId) => _depots.FindAll(d => userId.Contains(d.Owner.Id)).Select(d => d.ObjectToken);
-
         public IUser GetUserByName(string name) => _users.FirstOrDefault(u => u.Name == name);
 
         public IUser GetUserByToken(string userToken) => _users.FirstOrDefault(u => u.UserToken == userToken);
-
-
-        public string SetDepot(IDepot depot)
-        {
-            string itemToken = GenerateToken(_depots);
-
-            depot.Id = (_depots.LastOrDefault() == null ? 0 : _depots.LastOrDefault().Id) + 1;
-            depot.ObjectToken = itemToken;
-
-            _depots.Add((Depot)depot);
-
-            return itemToken;
-        }
-
-
-        public string UpdateDepot(IDepot depot)
-        {
-            string itemToken = GenerateToken(_depots);
-
-            var databaseItem = _depots.FirstOrDefault(d => d.Id == depot.Id);
-
-            if (databaseItem.Name != depot.Name) databaseItem.Name = depot.Name;
-            if (databaseItem.Adress != depot.Adress) databaseItem.Adress = depot.Adress;
-            if (databaseItem.Coordinates != depot.Coordinates) databaseItem.Coordinates = depot.Coordinates;
-            if (databaseItem.Storages != depot.Storages) databaseItem.Storages = depot.Storages;
-            if (databaseItem.IsPublic != depot.IsPublic) databaseItem.IsPublic = depot.IsPublic;
-            if (databaseItem.Owner != depot.Owner) databaseItem.Owner = depot.Owner;
-            databaseItem.ObjectToken = itemToken;
-
-            return itemToken;
-        }
 
         private string GenerateToken(IEnumerable<IObject> collection)
         {
