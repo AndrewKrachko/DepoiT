@@ -10,17 +10,22 @@ namespace DepoiTFakeDataStorage
     {
         public string AddStogaresToDepot(int depotId, IEnumerable<IStorage> storages)
         {
-            throw new NotImplementedException();
+            var depotToken = string.Empty;
+            var depot = _depots.FirstOrDefault(d => d.Id == depotId);
+
+            if (depot != null)
+            {
+                var depotStorages = depot.Storages.ToList();
+                depotStorages.AddRange(storages);
+                depot.Storages = depotStorages;
+                depotToken = GenerateToken(_depots);
+                depot.ObjectToken = depotToken;
+            }
+
+            return depotToken;
         }
 
-        public void DropDepot(int id)
-        {
-            var index = _depots.FindIndex(d => d.Id == id);
-            if (index != -1)
-            {
-                _depots.RemoveAt(index);
-            }
-        }
+        public void DropDepot(int id) => _depots.RemoveAll(d => d.Id == id);
 
         public IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens) => _depots.FindAll(d => tokens.Contains(d.ObjectToken));
 
@@ -30,19 +35,53 @@ namespace DepoiTFakeDataStorage
 
         public string[] MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
         {
-            throw new NotImplementedException();
+            var sourceDepotToken = string.Empty;
+            var recepientDepotToken = string.Empty;
+            var depotSource = _depots.FirstOrDefault(d => d.Id == sourceDepot);
+            var depotRecepient = _depots.FirstOrDefault(d => d.Id == recepientDepot);
+            var storages = _storages.Where(s => storageIds.Contains(s.Id));
+
+            if (depotSource != null && depotRecepient != null)
+            {
+                var recipientDepotStorages = depotRecepient.Storages.ToList();
+                recipientDepotStorages.AddRange(storages);
+                depotRecepient.Storages = recipientDepotStorages;
+                recepientDepotToken = GenerateToken(_depots);
+                depotRecepient.ObjectToken = recepientDepotToken;
+
+                var sourceDepotStorages = depotRecepient.Storages.ToList();
+                sourceDepotStorages.AddRange(storages);
+                depotRecepient.Storages = sourceDepotStorages;
+                depotRecepient.Storages.ToList().RemoveAll(s => storages.Contains(s));
+                sourceDepotToken = GenerateToken(_depots);
+                depotSource.ObjectToken = recepientDepotToken;
+            }
+
+            return new[] { sourceDepotToken, recepientDepotToken };
         }
 
         public string RemoveStoragesFromDeppot(int depotId, IEnumerable<int> ids)
         {
-            throw new NotImplementedException();
+            var depotToken = string.Empty;
+            var depot = _depots.FirstOrDefault(d => d.Id == depotId);
+
+            if (depot != null)
+            {
+                var depotStorages = depot.Storages.ToList();
+                depotStorages.RemoveAll(s => ids.Contains(s.Id));
+                depot.Storages = depotStorages;
+                depotToken = GenerateToken(_depots);
+                depot.ObjectToken = depotToken;
+            }
+
+            return depotToken;
         }
 
         public string SetDepot(IDepot depot)
         {
             string itemToken = GenerateToken(_depots);
 
-            depot.Id = (_depots.LastOrDefault() == null ? 0 : _depots.LastOrDefault().Id) + 1;
+            depot.Id = (_depots.Count == 0 ? 0 : _depots.LastOrDefault().Id) + 1;
             depot.ObjectToken = itemToken;
 
             _depots.Add((Depot)depot);
@@ -60,9 +99,11 @@ namespace DepoiTFakeDataStorage
             if (databaseItem.Name != depot.Name) databaseItem.Name = depot.Name;
             if (databaseItem.Adress != depot.Adress) databaseItem.Adress = depot.Adress;
             if (databaseItem.Coordinates != depot.Coordinates) databaseItem.Coordinates = depot.Coordinates;
-            if (databaseItem.Storages != depot.Storages) databaseItem.Storages = depot.Storages;
             if (databaseItem.IsPublic != depot.IsPublic) databaseItem.IsPublic = depot.IsPublic;
             if (databaseItem.Owner != depot.Owner) databaseItem.Owner = depot.Owner;
+            if ((databaseItem.Storages == null && depot.Storages != null) ||
+                (databaseItem.Storages != null && depot.Storages == null) ||
+                (databaseItem.Storages != null && depot.Storages != null && databaseItem.Storages.Equals(depot.Storages))) databaseItem.Storages = depot.Storages;
             databaseItem.ObjectToken = itemToken;
 
             return itemToken;

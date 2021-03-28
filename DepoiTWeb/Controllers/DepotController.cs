@@ -22,9 +22,9 @@ namespace DepoiTWeb.Controllers
             _logger = logger;
         }
 
-        [Route("getdepot")]
+        [Route("get")]
         [HttpPost]
-        public IActionResult GetDepot([FromBody] int id)
+        public IActionResult Get([FromBody] int id)
         {
             if (_core.GetDepot(id, out var depot))
             {
@@ -33,9 +33,9 @@ namespace DepoiTWeb.Controllers
             return BadRequest($"Depot not found");
         }
 
-        [Route("getdepots")]
+        [Route("getbyparent")]
         [HttpPost]
-        public IActionResult GetDepots([FromBody] int userId)
+        public IActionResult GetByUser([FromBody] int userId)
         {
             if (_core.GetDepotsByUser(userId, out var depots))
             {
@@ -44,9 +44,9 @@ namespace DepoiTWeb.Controllers
             return BadRequest($"Depots not found");
         }
 
-        [Route("setdepot")]
+        [Route("set")]
         [HttpPost]
-        public IActionResult SetDepot([FromBody] DepotModel depotModel)
+        public IActionResult Set([FromBody] DepotModel depotModel)
         {
             if (_core.SetDepot(depotModel.GetDepot(), out var depot))
             {
@@ -55,9 +55,9 @@ namespace DepoiTWeb.Controllers
             return BadRequest($"Can not create depot");
         }
 
-        [Route("updatedepot")]
+        [Route("update")]
         [HttpPost]
-        public IActionResult UpdateDepot([FromBody] DepotModel depotModel)
+        public IActionResult Update([FromBody] DepotModel depotModel)
         {
             if (_core.UpdateDepot(depotModel.GetDepot(), out var depot))
             {
@@ -66,9 +66,9 @@ namespace DepoiTWeb.Controllers
             return BadRequest($"Can not create depot");
         }
 
-        [Route("dropdepot")]
+        [Route("drop")]
         [HttpPost]
-        public IActionResult DropDepot([FromBody] int id)
+        public IActionResult Drop([FromBody] int id)
         {
             if(_core.DropDepot(id))
             {

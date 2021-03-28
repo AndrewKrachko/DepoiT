@@ -9,12 +9,14 @@ namespace DepoiTRepository
     {
         private IDataStorage _dataStorge;
         private ItemCache<IDepot> _depotItemCache;
+        private ItemCache<IStorage> _storageItemCache;
 
 
         public Repository(IDataStorage dataStorage)
         {
             _dataStorge = dataStorage;
             _depotItemCache = new ItemCache<IDepot>();
+            _storageItemCache = new ItemCache<IStorage>();
         }
 
         public void SetDataStorage(IDataStorage dataStorage)

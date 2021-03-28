@@ -45,7 +45,6 @@ namespace DepoiTRepository
         {
             try
             {
-
                 var itemToken = _dataStorge.SetDepot(depot);
                 createdDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetDepots).FirstOrDefault();
 
@@ -62,7 +61,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorge.UpdateDepot(depot);
-                updatedDepot = _dataStorge.GetDepots(new[] { itemToken }).FirstOrDefault();
+                updatedDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetDepots).FirstOrDefault();
 
                 return updatedDepot != null;
             }
@@ -90,7 +89,9 @@ namespace DepoiTRepository
         {
             try
             {
-                throw new NotImplementedException();
+                updatedDepot = _dataStorge.GetDepots(new[] { _dataStorge.RemoveStoragesFromDeppot(depotId, storages.Select(s => s.Id)) }).FirstOrDefault();
+
+                return updatedDepot.Storages.Intersect(storages).Count() == 0;
             }
             catch (Exception ex)
             {
@@ -103,7 +104,10 @@ namespace DepoiTRepository
         {
             try
             {
-                throw new NotImplementedException();
+                var updatedStorages = _dataStorge.GetDepots(_dataStorge.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot));
+
+                return updatedStorages.FirstOrDefault(d => d.Id == sourceDepot).Storages.Count(s => storageIds.Contains(s.Id)) == 0 &&
+                    updatedStorages.FirstOrDefault(d => d.Id == recepientDepot).Storages.Count(s => storageIds.Contains(s.Id)) == storageIds.Count();
             }
             catch (Exception ex)
             {
