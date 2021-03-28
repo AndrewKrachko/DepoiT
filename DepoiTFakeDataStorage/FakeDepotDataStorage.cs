@@ -8,7 +8,7 @@ namespace DepoiTFakeDataStorage
 {
     public partial class FakeDataStorage
     {
-        public string AddStogaresToDepot(IEnumerable<IStorage> storages)
+        public string AddStogaresToDepot(int depotId, IEnumerable<IStorage> storages)
         {
             throw new NotImplementedException();
         }
@@ -33,7 +33,7 @@ namespace DepoiTFakeDataStorage
             throw new NotImplementedException();
         }
 
-        public string RemoveStoragesFromDeppot(IEnumerable<int> ids)
+        public string RemoveStoragesFromDeppot(int depotId, IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }

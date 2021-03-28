@@ -10,8 +10,8 @@ namespace DepoiTItems
         string SetDepot(IDepot depot);
         string UpdateDepot(IDepot depot);
         void DropDepot(int id);
-        string AddStogaresToDepot(IEnumerable<IStorage> storages);
-        string RemoveStoragesFromDeppot(IEnumerable<int> ids);
+        string AddStogaresToDepot(int depotId, IEnumerable<IStorage> storages);
+        string RemoveStoragesFromDeppot(int depotId, IEnumerable<int> ids);
         string[] MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot);
     }
 }

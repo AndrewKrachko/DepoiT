@@ -18,14 +18,19 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
-        public bool AddStoragesToDepot(IEnumerable<IStorage> storages)
+        public bool AddStoragesToDepot(int depotId, IEnumerable<IStorage> storages)
         {
-            throw new NotImplementedException();
+            return _repository.AddStoragesToDepot(depotId, storages, out var depot);
         }
 
         public bool DropDepot(int id)
         {
             return _repository.DropDepot(id);
+        }
+
+        public bool DropStorage(int id)
+        {
+            return _repository.DropStorage(id);
         }
 
         public bool GetDepot(int id, out IDepot depot)
@@ -54,14 +59,40 @@ namespace DepoiTCore
             }
         }
 
-        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
+        public bool GetStorage(int id, out IStorage storage)
         {
-            throw new NotImplementedException();
+            if (_repository.GetStorages(new[] { id }, out var storages))
+            {
+                storage = storages.FirstOrDefault();
+                return true;
+            }
+            else
+            {
+                storage = null;
+                return false;
+            }
         }
 
-        public bool RemoveStoragesFromDepot(IEnumerable<IStorage> storages)
+        public bool GetStoragesByDepot(int depotId, out IEnumerable<IStorage> storages)
         {
-            throw new NotImplementedException();
+            if (_repository.GetStoragesByDepot(depotId, out storages))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
+        {
+            return _repository.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot);
+        }
+
+        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<IStorage> storages)
+        {
+            return _repository.RemoveStoragesFromDepot(depotId, storages, out var depot);
         }
 
         public bool SetDepot(IDepot depot, out IDepot createdDepot)
@@ -82,6 +113,21 @@ namespace DepoiTCore
             return false;
         }
 
+        public bool SetStorage(int depotId, IStorage storage, out IStorage createdStorage)
+        {
+            if (_repository.GetDepots(new[] { depotId }, out var _))
+            {
+                if (_repository.SetStorage(storage, out createdStorage) && 
+                    _repository.AddStoragesToDepot(depotId, new[] { createdStorage }, out var _))
+                {
+                    return true;
+                }
+            }
+
+            createdStorage = null;
+            return false;
+        }
+
         public bool UpdateDepot(IDepot depot, out IDepot createdDepot)
         {
             var userToken = depot.Owner.UserToken;
@@ -97,6 +143,17 @@ namespace DepoiTCore
             }
 
             createdDepot = null;
+            return false;
+        }
+
+        public bool UpdateStorage(IStorage storage, out IStorage updatedStorage)
+        {
+            if (_repository.UpdateStorage(storage, out updatedStorage))
+            {
+                return true;
+            }
+
+            updatedStorage = null;
             return false;
         }
     }

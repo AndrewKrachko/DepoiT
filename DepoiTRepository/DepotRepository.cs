@@ -71,19 +71,45 @@ namespace DepoiTRepository
                 throw ex;
             }
         }
-        public bool AddStoragesToDepot(IEnumerable<IStorage> storages)
+        public bool AddStoragesToDepot(int depotId, IEnumerable<IStorage> storages, out IDepot updatedDepot)
         {
-            throw new NotImplementedException();
+            try
+            {
+                updatedDepot = _dataStorge.GetDepots(new[] { _dataStorge.AddStogaresToDepot(depotId, storages) }).FirstOrDefault();
+
+                return updatedDepot.Storages.Intersect(storages).Count() == storages.Count();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public bool RemoveStoragesFromDepot(IEnumerable<IStorage> storages)
+        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<IStorage> storages, out IDepot updatedDepot)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

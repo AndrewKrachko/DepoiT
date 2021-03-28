@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface ICore : IDepotCore
+    public interface ICore : IDepotCore, IStorageCore
     {
     }
 }
