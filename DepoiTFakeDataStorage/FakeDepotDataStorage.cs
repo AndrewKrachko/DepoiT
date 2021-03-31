@@ -60,7 +60,7 @@ namespace DepoiTFakeDataStorage
             return new[] { sourceDepotToken, recepientDepotToken };
         }
 
-        public string RemoveStoragesFromDeppot(int depotId, IEnumerable<int> ids)
+        public string RemoveStoragesFromDepot(int depotId, IEnumerable<int> ids)
         {
             var depotToken = string.Empty;
             var depot = _depots.FirstOrDefault(d => d.Id == depotId);
