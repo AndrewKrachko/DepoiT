@@ -7,28 +7,30 @@ namespace DepoiTRepository
 {
     public partial class Repository : IRepository
     {
-        private IDataStorage _dataStorge;
-        private ItemCache<IDepot> _depotItemCache;
-        private ItemCache<IStorage> _storageItemCache;
+        private IDataStorage _dataStorage;
+        private readonly ItemCache<IDepot> _depotItemCache;
+        private readonly ItemCache<IStorage> _storageItemCache;
+        private readonly ItemCache<IItem> _itemItemCache;
 
 
         public Repository(IDataStorage dataStorage)
         {
-            _dataStorge = dataStorage;
+            _dataStorage = dataStorage;
             _depotItemCache = new ItemCache<IDepot>();
             _storageItemCache = new ItemCache<IStorage>();
+            _itemItemCache = new ItemCache<IItem>();
         }
 
         public void SetDataStorage(IDataStorage dataStorage)
         {
-            _dataStorge = dataStorage;
+            _dataStorage = dataStorage;
         }
 
         public bool GetUserByName(string name, out IUser user)
         {
             try
             {
-                user = _dataStorge.GetUserByName(name);
+                user = _dataStorage.GetUserByName(name);
 
                 if (user != null)
                 {
@@ -47,7 +49,7 @@ namespace DepoiTRepository
         {
             try
             {
-                user = _dataStorge.GetUserByToken(userToken);
+                user = _dataStorage.GetUserByToken(userToken);
 
                 if (user != null)
                 {

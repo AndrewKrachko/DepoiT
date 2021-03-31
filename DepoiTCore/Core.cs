@@ -28,6 +28,11 @@ namespace DepoiTCore
             return _repository.DropDepot(id);
         }
 
+        public bool DropItem(int id)
+        {
+            return _repository.DropItem(id);
+        }
+
         public bool DropStorage(int id)
         {
             return _repository.DropStorage(id);
@@ -50,6 +55,32 @@ namespace DepoiTCore
         public bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots)
         {
             if (_repository.GetDepotsByUser(userId, out depots))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool GetItem(int id, out IItem item)
+        {
+            if (_repository.GetItems(new[] { id }, out var items))
+            {
+                item = items.FirstOrDefault();
+                return true;
+            }
+            else
+            {
+                item = null;
+                return false;
+            }
+        }
+
+        public bool GetItemsByStorage(int storageId, out IEnumerable<IItem> items)
+        {
+            if (_repository.GetItemsByStorage(storageId, out items))
             {
                 return true;
             }
@@ -113,6 +144,21 @@ namespace DepoiTCore
             return false;
         }
 
+        public bool SetItem(int storageId, IItem item, out IItem createdItem)
+        {
+            if (_repository.GetStorages(new[] { storageId }, out var _))
+            {
+                if (_repository.SetItem(item, out createdItem) &&
+                    _repository.AddItemsToStorage(storageId, new[] { createdItem }, out var _))
+                {
+                    return true;
+                }
+            }
+
+            createdItem = null;
+            return false;
+        }
+
         public bool SetStorage(int depotId, IStorage storage, out IStorage createdStorage)
         {
             if (_repository.GetDepots(new[] { depotId }, out var _))
@@ -143,6 +189,17 @@ namespace DepoiTCore
             }
 
             createdDepot = null;
+            return false;
+        }
+
+        public bool UpdateItem(IItem item, out IItem updatedItem)
+        {
+            if (_repository.UpdateItem(item, out updatedItem))
+            {
+                return true;
+            }
+
+            updatedItem = null;
             return false;
         }
 

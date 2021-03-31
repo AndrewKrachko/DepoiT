@@ -19,23 +19,27 @@ namespace DepoiTCache
 
         public IEnumerable<T> GetOrCreate(IEnumerable<string> tokenSet, Func<IEnumerable<string>, IEnumerable<T>> createItem)
         {
-            var requiredTokens = tokenSet.ToList();
             var result = new List<T>();
 
-            for (int i = requiredTokens.Count() - 1; i >= 0; i--)
+            if (tokenSet != null)
             {
-                if (_cache.TryGetValue(requiredTokens[i], out T item))
-                {
-                    result.Add(item);
-                    requiredTokens.RemoveAt(i);
-                }
-            }
+                var requiredTokens = tokenSet.ToList();
 
-            if (requiredTokens.Count != 0)
-            {
-                var newSet = createItem(requiredTokens);
-                result.AddRange(newSet);
-                Set(newSet);
+                for (int i = requiredTokens.Count() - 1; i >= 0; i--)
+                {
+                    if (_cache.TryGetValue(requiredTokens[i], out T item))
+                    {
+                        result.Add(item);
+                        requiredTokens.RemoveAt(i);
+                    }
+                }
+
+                if (requiredTokens.Count != 0)
+                {
+                    var newSet = createItem(requiredTokens);
+                    result.AddRange(newSet);
+                    Set(newSet);
+                }
             }
 
             return result;

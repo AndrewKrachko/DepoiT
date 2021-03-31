@@ -9,15 +9,15 @@ namespace DepoiTRepository
     {
         public bool DropDepot(int id)
         {
-            _dataStorge.DropDepot(id);
-            return !_dataStorge.GetDepotTokens(new[] { id }).Any();
+            _dataStorage.DropDepot(id);
+            return !_dataStorage.GetDepotTokens(new[] { id }).Any();
         }
 
         public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depots)
         {
             try
             {
-                depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokens(id), _dataStorge.GetDepots);
+                depots = _depotItemCache.GetOrCreate(_dataStorage.GetDepotTokens(id), _dataStorage.GetDepots);
 
                 return depots != null;
             }
@@ -31,7 +31,7 @@ namespace DepoiTRepository
         {
             try
             {
-                depots = _depotItemCache.GetOrCreate(_dataStorge.GetDepotTokensByUser(new[] { userId }), _dataStorge.GetDepots);
+                depots = _depotItemCache.GetOrCreate(_dataStorage.GetDepotTokensByUser(new[] { userId }), _dataStorage.GetDepots);
 
                 return depots != null;
             }
@@ -45,8 +45,8 @@ namespace DepoiTRepository
         {
             try
             {
-                var itemToken = _dataStorge.SetDepot(depot);
-                createdDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetDepots).FirstOrDefault();
+                var itemToken = _dataStorage.SetDepot(depot);
+                createdDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
 
                 return createdDepot != null;
             }
@@ -60,8 +60,8 @@ namespace DepoiTRepository
         {
             try
             {
-                var itemToken = _dataStorge.UpdateDepot(depot);
-                updatedDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetDepots).FirstOrDefault();
+                var itemToken = _dataStorage.UpdateDepot(depot);
+                updatedDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
 
                 return updatedDepot != null;
             }
@@ -74,7 +74,7 @@ namespace DepoiTRepository
         {
             try
             {
-                updatedDepot = _dataStorge.GetDepots(new[] { _dataStorge.AddStogaresToDepot(depotId, storages) }).FirstOrDefault();
+                updatedDepot = _dataStorage.GetDepots(new[] { _dataStorage.AddStogaresToDepot(depotId, storages) }).FirstOrDefault();
 
                 return updatedDepot.Storages.Intersect(storages).Count() == storages.Count();
             }
@@ -89,7 +89,7 @@ namespace DepoiTRepository
         {
             try
             {
-                updatedDepot = _dataStorge.GetDepots(new[] { _dataStorge.RemoveStoragesFromDeppot(depotId, storages.Select(s => s.Id)) }).FirstOrDefault();
+                updatedDepot = _dataStorage.GetDepots(new[] { _dataStorage.RemoveStoragesFromDepot(depotId, storages.Select(s => s.Id)) }).FirstOrDefault();
 
                 return updatedDepot.Storages.Intersect(storages).Count() == 0;
             }
@@ -104,10 +104,10 @@ namespace DepoiTRepository
         {
             try
             {
-                var updatedStorages = _dataStorge.GetDepots(_dataStorge.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot));
+                var updateDepots = _dataStorage.GetDepots(_dataStorage.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot));
 
-                return updatedStorages.FirstOrDefault(d => d.Id == sourceDepot).Storages.Count(s => storageIds.Contains(s.Id)) == 0 &&
-                    updatedStorages.FirstOrDefault(d => d.Id == recepientDepot).Storages.Count(s => storageIds.Contains(s.Id)) == storageIds.Count();
+                return updateDepots.FirstOrDefault(d => d.Id == sourceDepot).Storages.Count(s => storageIds.Contains(s.Id)) == 0 &&
+                    updateDepots.FirstOrDefault(d => d.Id == recepientDepot).Storages.Count(s => storageIds.Contains(s.Id)) == storageIds.Count();
             }
             catch (Exception ex)
             {

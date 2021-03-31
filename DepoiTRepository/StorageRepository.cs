@@ -12,7 +12,7 @@ namespace DepoiTRepository
         {
             try
             {
-                storages = _storageItemCache.GetOrCreate(_dataStorge.GetStorageTokens(id), _dataStorge.GetStorages);
+                storages = _storageItemCache.GetOrCreate(_dataStorage.GetStorageTokens(id), _dataStorage.GetStorages);
 
                 return storages != null;
             }
@@ -26,7 +26,7 @@ namespace DepoiTRepository
         {
             try
             {
-                storages = _storageItemCache.GetOrCreate(_dataStorge.GetStorageTokensByDepot(new[] { depotId }), _dataStorge.GetStorages);
+                storages = _storageItemCache.GetOrCreate(_dataStorage.GetStorageTokensByDepot(new[] { depotId }), _dataStorage.GetStorages);
 
                 return storages != null;
             }
@@ -40,8 +40,8 @@ namespace DepoiTRepository
         {
             try
             {
-                var itemToken = _dataStorge.SetStorage(storage);
-                createdStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetStorages).FirstOrDefault();
+                var itemToken = _dataStorage.SetStorage(storage);
+                createdStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
 
                 return createdStorage != null;
             }
@@ -55,8 +55,8 @@ namespace DepoiTRepository
         {
             try
             {
-                var itemToken = _dataStorge.UpdateStorage(storage);
-                updatedStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorge.GetStorages).FirstOrDefault();
+                var itemToken = _dataStorage.UpdateStorage(storage);
+                updatedStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
 
                 return updatedStorage != null;
             }
@@ -68,8 +68,54 @@ namespace DepoiTRepository
 
         public bool DropStorage(int id)
         {
-            _dataStorge.DropStorage(id);
-            return !_dataStorge.GetStorageTokens(new[] { id }).Any();
+            _dataStorage.DropStorage(id);
+            return !_dataStorage.GetStorageTokens(new[] { id }).Any();
+        }
+
+        public bool AddItemsToStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage)
+        {
+            try
+            {
+                updatedStorage = _dataStorage.GetStorages(new[] { _dataStorage.AddItemsToStorage(storageId, items) }).FirstOrDefault();
+
+                return updatedStorage.Items.Intersect(items).Count() == items.Count();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool RemoveItemsFromStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage)
+        {
+            try
+            {
+                updatedStorage = _dataStorage.GetStorages(new[] { _dataStorage.RemoveItemsFromStorage(storageId, items.Select(s => s.Id)) }).FirstOrDefault();
+
+                return updatedStorage.Items.Intersect(items).Count() == 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool MoveItemsBetweenStorages(IEnumerable<int> itemIds, int sourceStorage, int recepientStorage)
+        {
+            try
+            {
+                var updatedStorages = _dataStorage.GetStorages(_dataStorage.MoveStoragesBetweenDepots(itemIds, sourceStorage, recepientStorage));
+
+                return updatedStorages.FirstOrDefault(d => d.Id == sourceStorage).Items.Count(s => itemIds.Contains(s.Id)) == 0 &&
+                    updatedStorages.FirstOrDefault(d => d.Id == recepientStorage).Items.Count(s => itemIds.Contains(s.Id)) == itemIds.Count();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

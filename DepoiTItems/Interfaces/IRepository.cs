@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public interface IRepository : IDepotRepository, IUserRepository, IStorageRepository
+    public interface IRepository : IDepotRepository, IUserRepository, IStorageRepository, IItemRepository
     {
         void SetDataStorage(IDataStorage dataStorage);
     }
