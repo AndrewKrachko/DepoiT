@@ -5,7 +5,7 @@ namespace DepoiTItems
     public interface IFieldPattern<T> : IObject
     {
         bool IsRequired { get; set; }
-        FielddTypeEnum FielddType { get; set; }
+        FieldTypeEnum FielddType { get; set; }
         T DefaultValue { get; set; }
     }
 }

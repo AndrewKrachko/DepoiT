@@ -1,6 +1,6 @@
 ﻿namespace DepoiTItems
 {
-    public enum FielddTypeEnum
+    public enum FieldTypeEnum
     {
         Number,
         NumberWithTolerance,

@@ -9,7 +9,7 @@ namespace DepoiTItems
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsRequired { get; set; }
-        public FielddTypeEnum FielddType { get; set; }
+        public FieldTypeEnum FielddType { get; set; }
         public T DefaultValue { get; set; }
         public string ObjectToken { get; set; }
     }
