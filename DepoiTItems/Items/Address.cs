@@ -17,5 +17,41 @@ namespace DepoiTItems
         public int Apartment { get; set; } = 14;
         public string ApartmentIndex { get; set; } = "B";
         public string ObjectToken { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Address address &&
+                   Id == address.Id &&
+                   Name == address.Name &&
+                   Country == address.Country &&
+                   District == address.District &&
+                   City == address.City &&
+                   Street == address.Street &&
+                   Building == address.Building &&
+                   BuildingIndex == address.BuildingIndex &&
+                   Apartment == address.Apartment &&
+                   ApartmentIndex == address.ApartmentIndex &&
+                   ObjectToken == address.ObjectToken;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Name);
+            hash.Add(Country);
+            hash.Add(District);
+            hash.Add(City);
+            hash.Add(Street);
+            hash.Add(Building);
+            hash.Add(BuildingIndex);
+            hash.Add(Apartment);
+            hash.Add(ApartmentIndex);
+            hash.Add(ObjectToken);
+            return hash.ToHashCode();
+        }
+
+        public static bool operator ==(Address addressA, Address addressB) => addressA.Equals(addressB);
+        public static bool operator !=(Address addressA, Address addressB) => !addressA.Equals(addressB);
     }
 }

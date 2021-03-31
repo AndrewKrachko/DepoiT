@@ -15,13 +15,24 @@ namespace DepoiTItems
         public string Name { get; set; }
         public string ObjectToken { get; set; }
 
-        public static bool operator == (Storage storageA, Storage storageB) =>
-            storageA.Id == storageB.Id && storageA.Name == storageB.Name && storageA.NameB == storageB.NameB && storageA.NameC == storageB.NameC && 
-            storageA.NameSplitter == storageB.NameSplitter && storageA.ObjectToken == storageB.ObjectToken && storageA.Items?.Count() == storageB.Items?.Count() &&
-            storageA.Items?.Intersect(storageB.Items).Count() == storageA.Items?.Count();
-        public static bool operator !=(Storage storageA, Storage storageB) =>
-            storageA.Id != storageB.Id || storageA.Name != storageB.Name || storageA.NameB != storageB.NameB || storageA.NameC != storageB.NameC ||
-            storageA.NameSplitter != storageB.NameSplitter || storageA.ObjectToken != storageB.ObjectToken || storageA.Items?.Count() != storageB.Items?.Count() ||
-            storageA.Items?.Intersect(storageB.Items).Count() != storageA.Items?.Count();
+        public override bool Equals(object obj)
+        {
+            return obj is Storage storage &&
+                   NameB == storage.NameB &&
+                   NameC == storage.NameC &&
+                   NameSplitter == storage.NameSplitter &&
+                   EqualityComparer<IEnumerable<IItem>>.Default.Equals(Items, storage.Items) &&
+                   Id == storage.Id &&
+                   Name == storage.Name &&
+                   ObjectToken == storage.ObjectToken;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(NameB, NameC, NameSplitter, Items, Id, Name, ObjectToken);
+        }
+
+        public static bool operator ==(Storage storageA, Storage storageB) => storageA.Equals(storageB);
+        public static bool operator !=(Storage storageA, Storage storageB) => !storageA.Equals(storageB);
     }
 }
