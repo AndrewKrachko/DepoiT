@@ -16,14 +16,15 @@ namespace DepoiTItems
 
         public override bool Equals(object obj)
         {
-            return obj is User user &&
-                   Id == user.Id &&
-                   Name == user.Name &&
-                   UserToken == user.UserToken &&
-                   Email == user.Email &&
-                   Password == user.Password &&
-                   EqualityComparer<IPhoto>.Default.Equals(Avatar, user.Avatar) &&
-                   ObjectToken == user.ObjectToken;
+            return obj != null
+                && obj is User user
+                && Id == user.Id
+                && Name == user.Name
+                && UserToken == user.UserToken
+                && Email == user.Email
+                && Password == user.Password
+                && EqualityComparer<IPhoto>.Default.Equals(Avatar, user.Avatar)
+                && ObjectToken == user.ObjectToken;
         }
 
         public override int GetHashCode()
@@ -31,7 +32,9 @@ namespace DepoiTItems
             return HashCode.Combine(Id, Name, UserToken, Email, Password, Avatar, ObjectToken);
         }
 
-        public static bool operator ==(User userA, User userB) => userA.Equals(userB);
-        public static bool operator !=(User userA, User userB) => userA.Equals(userB);
+        public static bool operator ==(User userA, User userB) => userA is User && userB is User && userA.Equals(userB);
+        public static bool operator !=(User userA, User userB) => userA is User && userB is null
+            || userA is null && userB is User
+            || userA is User && userB is User && !userA.Equals(userB);
     }
 }

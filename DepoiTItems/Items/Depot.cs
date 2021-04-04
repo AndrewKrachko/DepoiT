@@ -17,15 +17,16 @@ namespace DepoiTItems
 
         public override bool Equals(object obj)
         {
-            return obj is Depot depot &&
-                   EqualityComparer<IAddress>.Default.Equals(Adress, depot.Adress) &&
-                   EqualityComparer<IGeoCoordinates>.Default.Equals(Coordinates, depot.Coordinates) &&
-                   ((Storages == null && depot.Storages == null) || (Storages != null && depot.Storages != null && Storages.SequenceEqual(depot.Storages))) &&
-                   IsPublic == depot.IsPublic &&
-                   EqualityComparer<IUser>.Default.Equals(Owner, depot.Owner) &&
-                   Id == depot.Id &&
-                   Name == depot.Name &&
-                   ObjectToken == depot.ObjectToken;
+            return obj != null
+                && obj is Depot depot
+                && EqualityComparer<IAddress>.Default.Equals(Adress, depot.Adress)
+                && EqualityComparer<IGeoCoordinates>.Default.Equals(Coordinates, depot.Coordinates)
+                && ((Storages == null && depot.Storages == null) || (Storages != null && depot.Storages != null && Storages.SequenceEqual(depot.Storages)))
+                && IsPublic == depot.IsPublic
+                && EqualityComparer<IUser>.Default.Equals(Owner, depot.Owner)
+                && Id == depot.Id
+                && Name == depot.Name
+                && ObjectToken == depot.ObjectToken;
         }
 
         public override int GetHashCode()
@@ -33,7 +34,9 @@ namespace DepoiTItems
             return HashCode.Combine(Adress, Coordinates, Storages, IsPublic, Owner, Id, Name, ObjectToken);
         }
 
-        public static bool operator ==(Depot depotA, Depot depotB) => depotA.Equals(depotB);
-        public static bool operator !=(Depot depotA, Depot depotB) => !depotA.Equals(depotB);
+        public static bool operator ==(Depot depotA, Depot depotB) => depotA is Depot && depotB is Depot && depotA.Equals(depotB);
+        public static bool operator !=(Depot depotA, Depot depotB) => depotA is Depot && depotB is null
+            || depotA is null && depotB is Depot
+            || depotA is Depot && depotB is Depot && !depotA.Equals(depotB);
     }
 }

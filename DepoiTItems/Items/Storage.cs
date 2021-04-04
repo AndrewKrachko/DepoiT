@@ -17,14 +17,15 @@ namespace DepoiTItems
 
         public override bool Equals(object obj)
         {
-            return obj is Storage storage &&
-                   NameB == storage.NameB &&
-                   NameC == storage.NameC &&
-                   NameSplitter == storage.NameSplitter &&
-                   ((Items == null && storage.Items == null) || (Items != null && storage.Items != null && Items.SequenceEqual(storage.Items))) &&
-                   Id == storage.Id &&
-                   Name == storage.Name &&
-                   ObjectToken == storage.ObjectToken;
+            return obj != null
+                && obj is Storage storage
+                && NameB == storage.NameB
+                && NameC == storage.NameC
+                && NameSplitter == storage.NameSplitter
+                && ((Items == null && storage.Items == null) || (Items != null && storage.Items != null && Items.SequenceEqual(storage.Items)))
+                && Id == storage.Id
+                && Name == storage.Name
+                && ObjectToken == storage.ObjectToken;
         }
 
         public override int GetHashCode()
@@ -32,7 +33,9 @@ namespace DepoiTItems
             return HashCode.Combine(NameB, NameC, NameSplitter, Items, Id, Name, ObjectToken);
         }
 
-        public static bool operator ==(Storage storageA, Storage storageB) => storageA.Equals(storageB);
-        public static bool operator !=(Storage storageA, Storage storageB) => !storageA.Equals(storageB);
+        public static bool operator ==(Storage storageA, Storage storageB) => storageA is Storage && storageB is Storage && storageA.Equals(storageB);
+        public static bool operator !=(Storage storageA, Storage storageB) => storageA is Storage && storageB is null
+            || storageA is null && storageB is Storage
+            || storageA is Storage && storageB is Storage && !storageA.Equals(storageB);
     }
 }

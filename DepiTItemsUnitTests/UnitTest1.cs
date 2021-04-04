@@ -21,10 +21,14 @@ namespace DepiTItemsUnitTests
             var resultA = a == b;
             var resultB = c == d;
             var resultC = b == d;
+            var resultD = a == null;
+            var resultE = null == a;
 
             Assert.IsTrue(resultA, "Equality operator is not working properly with fully defind field set");
             Assert.IsTrue(resultB, "Equality operator is not working properly with Item == Null");
             Assert.IsFalse(resultC, "Equality operator is not working properly with unequal objects");
+            Assert.IsFalse(resultD, "Equality operator is not working properly with unequal objects");
+            Assert.IsFalse(resultE, "Equality operator is not working properly with unequal objects");
         }
 
         [Test]
@@ -34,14 +38,21 @@ namespace DepiTItemsUnitTests
             var b = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             var c = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new IItem[] { } };
             var d = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
+            Storage e = null;
 
             var resultA = a != b;
             var resultB = c != d;
             var resultC = b != d;
+            var resultD = a != e;
+            var resultE = a != null;
+            var resultF = a != null;
 
             Assert.IsTrue(resultA, "InEquality operator is not working properly");
             Assert.IsTrue(resultB, "InEquality operator is not working properly");
             Assert.IsFalse(resultC, "InEquality operator is not working properly");
+            Assert.IsTrue(resultD, "InEquality operator is not working properly");
+            Assert.IsTrue(resultE, "InEquality operator is not working properly");
+            Assert.IsTrue(resultF, "InEquality operator is not working properly");
         }
 
         [Test]
@@ -55,10 +66,14 @@ namespace DepiTItemsUnitTests
             var resultA = a == b;
             var resultB = c == d;
             var resultC = b == d;
+            var resultD = a == null;
+            var resultE = null == a;
 
             Assert.IsTrue(resultA, "Equality operator is not working properly with fully defind field set");
             Assert.IsTrue(resultB, "Equality operator is not working properly with Storages == Null");
             Assert.IsFalse(resultC, "Equality operator is not working properly with unequal objects");
+            Assert.IsFalse(resultD, "Equality operator is not working properly with unequal objects");
+            Assert.IsFalse(resultE, "Equality operator is not working properly with unequal objects");
         }
 
         [Test]
@@ -68,14 +83,22 @@ namespace DepiTItemsUnitTests
             var b = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             var c = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new IStorage[] { } };
             var d = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
+            Depot e = null;
 
             var resultA = a != b;
             var resultB = c != d;
             var resultC = b != d;
+            var resultD = a != e;
+            var resultE = a != null;
+            var resultF = a != null;
+            
 
             Assert.IsTrue(resultA, "InEquality operator is not working properly");
             Assert.IsTrue(resultB, "InEquality operator is not working properly");
             Assert.IsFalse(resultC, "InEquality operator is not working properly");
+            Assert.IsTrue(resultD, "InEquality operator is not working properly");
+            Assert.IsTrue(resultE, "InEquality operator is not working properly");
+            Assert.IsTrue(resultF, "InEquality operator is not working properly");
         }
 
     }
