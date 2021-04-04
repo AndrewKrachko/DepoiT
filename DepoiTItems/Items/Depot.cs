@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DepoiTItems
 {
@@ -19,7 +20,7 @@ namespace DepoiTItems
             return obj is Depot depot &&
                    EqualityComparer<IAddress>.Default.Equals(Adress, depot.Adress) &&
                    EqualityComparer<IGeoCoordinates>.Default.Equals(Coordinates, depot.Coordinates) &&
-                   EqualityComparer<IEnumerable<IStorage>>.Default.Equals(Storages, depot.Storages) &&
+                   ((Storages == null && depot.Storages == null) || (Storages != null && depot.Storages != null && Storages.SequenceEqual(depot.Storages))) &&
                    IsPublic == depot.IsPublic &&
                    EqualityComparer<IUser>.Default.Equals(Owner, depot.Owner) &&
                    Id == depot.Id &&

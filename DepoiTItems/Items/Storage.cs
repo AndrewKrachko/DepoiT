@@ -21,7 +21,7 @@ namespace DepoiTItems
                    NameB == storage.NameB &&
                    NameC == storage.NameC &&
                    NameSplitter == storage.NameSplitter &&
-                   EqualityComparer<IEnumerable<IItem>>.Default.Equals(Items, storage.Items) &&
+                   ((Items == null && storage.Items == null) || (Items != null && storage.Items != null && Items.SequenceEqual(storage.Items))) &&
                    Id == storage.Id &&
                    Name == storage.Name &&
                    ObjectToken == storage.ObjectToken;
