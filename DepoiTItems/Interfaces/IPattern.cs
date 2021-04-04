@@ -4,6 +4,6 @@ namespace DepoiTItems
 {
     public interface IPattern : IObject
     {
-        IEnumerable<IFieldPattern<object>> fieldPatterns { get; set; }
+        IEnumerable<IFieldPattern<object>> FieldPatterns { get; set; }
     }
 }
