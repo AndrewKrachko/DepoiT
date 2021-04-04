@@ -5,8 +5,8 @@ namespace DepoiTItems
 {
     public class Item : DepoiTObject, IItem
     {
-        public IPattern Pattern { get; set; }
-        public IEnumerable<IField<object>> Fields { get; set; }
+        public Pattern Pattern { get; set; }
+        public List<Field<object>> Fields { get; set; }
 
         public override bool Equals(object obj)
         {
