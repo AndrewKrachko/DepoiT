@@ -23,9 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringGeneratorUnitTests", "StringGenerator\StringGeneratorUnitTests\StringGeneratorUnitTests.csproj", "{DC7497FE-B063-4F0B-A2D4-32C9FC3F4E82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTCache", "DepoiTItemChache\DepoiTCache\DepoiTCache.csproj", "{11FEB5E5-3A3A-4C8F-B1BA-485AE15871B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTCache", "DepoiTItemChache\DepoiTCache\DepoiTCache.csproj", "{11FEB5E5-3A3A-4C8F-B1BA-485AE15871B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepiTItemsUnitTests", "DepiTItemsUnitTests\DepiTItemsUnitTests.csproj", "{76DC7D97-0DBF-41F7-BF21-199522B4A637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepiTItemsUnitTests", "DepiTItemsUnitTests\DepiTItemsUnitTests.csproj", "{76DC7D97-0DBF-41F7-BF21-199522B4A637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTEFDataStorage", "DepoiTEFDataStorage\DepoiTEFDataStorage.csproj", "{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{76DC7D97-0DBF-41F7-BF21-199522B4A637}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76DC7D97-0DBF-41F7-BF21-199522B4A637}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76DC7D97-0DBF-41F7-BF21-199522B4A637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
