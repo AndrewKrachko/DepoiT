@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DepoiTItems
+﻿namespace DepoiTItems
 {
     public interface IField<T> : IObject
     {

@@ -1,18 +1,27 @@
-﻿using DepoiTItems;
+﻿using DepoiTCache;
+using DepoiTItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DepoiTRepository
 {
-    public partial class Repository
+    public class StorageRepository : IStorageRepository
     {
+        private readonly ItemCache<Storage> _itemCache;
+        private readonly IStorageDataStorage _dataStorage;
+
+        public StorageRepository(IStorageDataStorage dataStorage)
+        {
+            _itemCache = new ItemCache<Storage>();
+            _dataStorage = dataStorage;
+        }
+
         public bool GetStorages(IEnumerable<int> id, out IEnumerable<Storage> storages)
         {
             try
             {
-                storages = _storageItemCache.GetOrCreate(_dataStorage.GetStorageTokens(id), _dataStorage.GetStorages);
+                storages = _itemCache.GetOrCreate(_dataStorage.GetStorageTokens(id), _dataStorage.GetStorages);
 
                 return storages != null;
             }
@@ -26,7 +35,7 @@ namespace DepoiTRepository
         {
             try
             {
-                storages = _storageItemCache.GetOrCreate(_dataStorage.GetStorageTokensByDepot(new[] { depotId }), _dataStorage.GetStorages);
+                storages = _itemCache.GetOrCreate(_dataStorage.GetStorageTokensByDepot(new[] { depotId }), _dataStorage.GetStorages);
 
                 return storages != null;
             }
@@ -41,7 +50,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.SetStorage(storage);
-                createdStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
+                createdStorage = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
 
                 return createdStorage != null;
             }
@@ -56,7 +65,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.UpdateStorage(storage);
-                updatedStorage = _storageItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
+                updatedStorage = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetStorages).FirstOrDefault();
 
                 return updatedStorage != null;
             }
@@ -106,7 +115,7 @@ namespace DepoiTRepository
         {
             try
             {
-                var updatedStorages = _dataStorage.GetStorages(_dataStorage.MoveStoragesBetweenDepots(itemIds, sourceStorage, recepientStorage));
+                var updatedStorages = _dataStorage.GetStorages(_dataStorage.MoveItemsBetweenStorages(itemIds, sourceStorage, recepientStorage));
 
                 return updatedStorages.FirstOrDefault(d => d.Id == sourceStorage).Items.Count(s => itemIds.Contains(s.Id)) == 0 &&
                     updatedStorages.FirstOrDefault(d => d.Id == recepientStorage).Items.Count(s => itemIds.Contains(s.Id)) == itemIds.Count();

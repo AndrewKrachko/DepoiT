@@ -1,13 +1,6 @@
-﻿using DepoiTItems;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DepoiTItems
+﻿namespace DepoiTItems
 {
-    public interface IDataStorage : IDepotDataStorage, IStorageDataStorage, IItemDataStorage
+    public interface IDataStorage : IDepotDataStorage, IStorageDataStorage, IItemDataStorage, IUserDataStorage
     {
-        User GetUserByName(string name);
-        User GetUserByToken(string userToken);
     }
 }

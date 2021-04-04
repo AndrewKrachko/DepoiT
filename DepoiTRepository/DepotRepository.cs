@@ -1,12 +1,22 @@
-﻿using DepoiTItems;
+﻿using DepoiTCache;
+using DepoiTItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DepoiTRepository
 {
-    public partial class Repository
+    public class DepotRepository : IDepotRepository
     {
+        private readonly ItemCache<Depot> _itemCache;
+        private readonly IDepotDataStorage _dataStorage;
+
+        public DepotRepository(IDepotDataStorage dataStorage)
+        {
+            _itemCache = new ItemCache<Depot>();
+            _dataStorage = dataStorage;
+        }
+
         public bool DropDepot(int id)
         {
             _dataStorage.DropDepot(id);
@@ -17,7 +27,7 @@ namespace DepoiTRepository
         {
             try
             {
-                depots = _depotItemCache.GetOrCreate(_dataStorage.GetDepotTokens(id), _dataStorage.GetDepots);
+                depots = _itemCache.GetOrCreate(_dataStorage.GetDepotTokens(id), _dataStorage.GetDepots);
 
                 return depots != null;
             }
@@ -31,7 +41,7 @@ namespace DepoiTRepository
         {
             try
             {
-                depots = _depotItemCache.GetOrCreate(_dataStorage.GetDepotTokensByUser(new[] { userId }), _dataStorage.GetDepots);
+                depots = _itemCache.GetOrCreate(_dataStorage.GetDepotTokensByUser(new[] { userId }), _dataStorage.GetDepots);
 
                 return depots != null;
             }
@@ -46,7 +56,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.SetDepot(depot);
-                createdDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
+                createdDepot = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
 
                 return createdDepot != null;
             }
@@ -61,7 +71,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.UpdateDepot(depot);
-                updatedDepot = _depotItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
+                updatedDepot = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetDepots).FirstOrDefault();
 
                 return updatedDepot != null;
             }

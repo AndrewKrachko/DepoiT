@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DepoiTItems
+﻿namespace DepoiTItems
 {
-    public interface IRepository : IDepotRepository, IUserRepository, IStorageRepository, IItemRepository
+    public interface IRepository
     {
+        IDepotRepository DepotRepository { get; set; }
+        IUserRepository UserRepository { get; set; }
+        IStorageRepository StorageRepository { get; set; }
+        IItemRepository ItemRepository { get; set; }
         void SetDataStorage(IDataStorage dataStorage);
     }
 }

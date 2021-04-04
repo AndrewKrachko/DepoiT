@@ -1,18 +1,27 @@
-﻿using DepoiTItems;
+﻿using DepoiTCache;
+using DepoiTItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DepoiTRepository
 {
-    public partial class Repository
+    public class ItemRepository : IItemRepository
     {
+        private readonly ItemCache<Item> _itemCache;
+        private readonly IItemDataStorage _dataStorage;
+
+        public ItemRepository(IItemDataStorage dataStorage)
+        {
+            _itemCache = new ItemCache<Item>();
+            _dataStorage = dataStorage;
+        }
+
         public bool GetItems(IEnumerable<int> id, out IEnumerable<Item> items)
         {
             try
             {
-                items = _itemItemCache.GetOrCreate(_dataStorage.GetItemTokens(id), _dataStorage.GetItems);
+                items = _itemCache.GetOrCreate(_dataStorage.GetItemTokens(id), _dataStorage.GetItems);
 
                 return items != null;
             }
@@ -26,7 +35,7 @@ namespace DepoiTRepository
         {
             try
             {
-                items = _itemItemCache.GetOrCreate(_dataStorage.GetItemTokensByStorage(new[] { storageId }), _dataStorage.GetItems);
+                items = _itemCache.GetOrCreate(_dataStorage.GetItemTokensByStorage(new[] { storageId }), _dataStorage.GetItems);
 
                 return items != null;
             }
@@ -41,7 +50,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.SetItem(item);
-                createdItem = _itemItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetItems).FirstOrDefault();
+                createdItem = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetItems).FirstOrDefault();
 
                 return createdItem != null;
             }
@@ -56,7 +65,7 @@ namespace DepoiTRepository
             try
             {
                 var itemToken = _dataStorage.UpdateItem(item);
-                updatedItem = _itemItemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetItems).FirstOrDefault();
+                updatedItem = _itemCache.GetOrCreate(new[] { itemToken }, _dataStorage.GetItems).FirstOrDefault();
 
                 return updatedItem != null;
             }

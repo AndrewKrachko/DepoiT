@@ -2,17 +2,10 @@ using DepoiTCore;
 using DepoiTItems;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DepoiTWeb
 {
@@ -35,7 +28,8 @@ namespace DepoiTWeb
             });
             services.AddSingleton<ICore, Core>();
             services.AddSingleton<Logger.ILogger, Logger.Logger>();
-            services.AddMvc().AddNewtonsoftJson(setupAction => {
+            services.AddMvc().AddNewtonsoftJson(setupAction =>
+            {
                 setupAction.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
         }

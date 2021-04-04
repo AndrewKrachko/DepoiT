@@ -1,10 +1,6 @@
 ﻿using DepoiTItems;
 using Logger;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DepoiTWeb.Controllers
 {
@@ -25,7 +21,7 @@ namespace DepoiTWeb.Controllers
         [HttpPost]
         public IActionResult Login([FromBody] User user)
         {
-            if(this.User.Identity.IsAuthenticated)
+            if (this.User.Identity.IsAuthenticated)
             {
 
             }
