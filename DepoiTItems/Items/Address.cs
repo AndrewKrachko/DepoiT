@@ -4,10 +4,8 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public class Address : IAddress
+    public class Address : DepoiTObject, IAddress
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
         public string Country { get; set; } = "Belarus";
         public string District { get; set; } = "Minsk distr";
         public string City { get; set; } = "Minsk";
@@ -16,29 +14,25 @@ namespace DepoiTItems
         public string BuildingIndex { get; set; } = "";
         public int Apartment { get; set; } = 14;
         public string ApartmentIndex { get; set; } = "B";
-        public string ObjectToken { get; set; }
 
         public override bool Equals(object obj)
         {
-            return obj is Address address &&
-                   Id == address.Id &&
-                   Name == address.Name &&
-                   Country == address.Country &&
-                   District == address.District &&
-                   City == address.City &&
-                   Street == address.Street &&
-                   Building == address.Building &&
-                   BuildingIndex == address.BuildingIndex &&
-                   Apartment == address.Apartment &&
-                   ApartmentIndex == address.ApartmentIndex &&
-                   ObjectToken == address.ObjectToken;
+            return obj is Address address
+                && base.Equals(obj)
+                && Country == address.Country
+                && District == address.District
+                && City == address.City
+                && Street == address.Street
+                && Building == address.Building
+                && BuildingIndex == address.BuildingIndex
+                && Apartment == address.Apartment
+                && ApartmentIndex == address.ApartmentIndex;
         }
 
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Name);
+            hash.Add(base.GetHashCode());
             hash.Add(Country);
             hash.Add(District);
             hash.Add(City);
@@ -47,11 +41,12 @@ namespace DepoiTItems
             hash.Add(BuildingIndex);
             hash.Add(Apartment);
             hash.Add(ApartmentIndex);
-            hash.Add(ObjectToken);
             return hash.ToHashCode();
         }
 
-        public static bool operator ==(Address addressA, Address addressB) => addressA.Equals(addressB);
-        public static bool operator !=(Address addressA, Address addressB) => !addressA.Equals(addressB);
+        public static bool operator ==(Address objectA, Address objectB) => objectA is Address && objectB is Address && objectA.Equals(objectB);
+        public static bool operator !=(Address objectA, Address objectB) => objectA is Address && objectB is null
+            || objectA is null && objectB is Address
+            || objectA is Address && objectB is Address && !objectA.Equals(objectB);
     }
 }

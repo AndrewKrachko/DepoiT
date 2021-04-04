@@ -10,9 +10,9 @@ namespace DepoiTFakeDataStorage
     {
         public IEnumerable<string> GetItemTokens(IEnumerable<int> id) => _items.FindAll(s => id.Contains(s.Id)).Select(s => s.ObjectToken);
         public IEnumerable<string> GetItemTokensByStorage(IEnumerable<int> storageId) => _storages?.Where(d => storageId.Contains(d.Id) && d.Items != null && d.Items.Count() != 0)?.Select(d => d.Items).SelectMany(s => s?.Select(s => s?.ObjectToken));
-        public IEnumerable<IItem> GetItems(IEnumerable<string> tokens) => _items.FindAll(s => tokens.Contains(s.ObjectToken));
+        public IEnumerable<Item> GetItems(IEnumerable<string> tokens) => _items.FindAll(s => tokens.Contains(s.ObjectToken));
 
-        public string SetItem(IItem item)
+        public string SetItem(Item item)
         {
             string itemToken = GenerateToken(_items);
 
@@ -24,7 +24,7 @@ namespace DepoiTFakeDataStorage
             return itemToken;
         }
 
-        public string UpdateItem(IItem item)
+        public string UpdateItem(Item item)
         {
             string itemToken = GenerateToken(_items);
 

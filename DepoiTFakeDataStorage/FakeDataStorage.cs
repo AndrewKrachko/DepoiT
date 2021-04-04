@@ -62,20 +62,20 @@ namespace DepoiTFakeDataStorage
             _depots = new List<Depot>
             {
                 new Depot() {Id = 0, Name = "Default depot", Adress = _addresses[0], Owner = _users[0], IsPublic = false, ObjectToken = @"&pDobMl2HeH(5N.bAXhieU_hp",
-                    Storages = new []{ _storages[0], _storages[1], _storages[2] } },
+                    Storages = new List<Storage>(){ _storages[0], _storages[1], _storages[2] } },
                 new Depot() {Id = 1, Name = "User depot 1", Adress = _addresses[1], Owner = _users[1], IsPublic = false, ObjectToken=@"M)F;b'4v_xV$~%S.$Ml5/;O7j",
-                    Storages = new []{ _storages[3], _storages[4], _storages[5] } },
+                    Storages = new List<Storage>(){ _storages[3], _storages[4], _storages[5] } },
                 new Depot() {Id = 2, Name = "User depot 2", Adress = _addresses[2], Owner = _users[1], IsPublic = false, ObjectToken=@"fB'juP2[~6DGue^40UUV_BT6\",
-                    Storages = new []{ _storages[6], _storages[7] } },
+                    Storages = new List<Storage>(){ _storages[6], _storages[7] } },
                 new Depot() {Id = 3, Name = "Empty depot", Owner = _users[1], ObjectToken=@"lB/}{ZZos1obR`'/?/'O!c-oA" },
             };
         }
 
-        public IUser GetUserByName(string name) => _users.FirstOrDefault(u => u.Name == name);
+        public User GetUserByName(string name) => _users.FirstOrDefault(u => u.Name == name);
 
-        public IUser GetUserByToken(string userToken) => _users.FirstOrDefault(u => u.UserToken == userToken);
+        public User GetUserByToken(string userToken) => _users.FirstOrDefault(u => u.UserToken == userToken);
 
-        private string GenerateToken(IEnumerable<IObject> collection)
+        private string GenerateToken(IEnumerable<DepoiTObject> collection)
         {
             string itemToken;
             do

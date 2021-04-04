@@ -8,7 +8,7 @@ namespace DepoiTFakeDataStorage
 {
     public partial class FakeDataStorage
     {
-        public string AddStogaresToDepot(int depotId, IEnumerable<IStorage> storages)
+        public string AddStogaresToDepot(int depotId, IEnumerable<Storage> storages)
         {
             var depotToken = string.Empty;
             var depot = _depots.FirstOrDefault(d => d.Id == depotId);
@@ -27,7 +27,7 @@ namespace DepoiTFakeDataStorage
 
         public void DropDepot(int id) => _depots.RemoveAll(d => d.Id == id);
 
-        public IEnumerable<IDepot> GetDepots(IEnumerable<string> tokens) => _depots.FindAll(d => tokens.Contains(d.ObjectToken));
+        public IEnumerable<Depot> GetDepots(IEnumerable<string> tokens) => _depots.FindAll(d => tokens.Contains(d.ObjectToken));
 
         public IEnumerable<string> GetDepotTokens(IEnumerable<int> id) => _depots.FindAll(d => id.Contains(d.Id)).Select(d => d.ObjectToken);
 
@@ -77,7 +77,7 @@ namespace DepoiTFakeDataStorage
             return depotToken;
         }
 
-        public string SetDepot(IDepot depot)
+        public string SetDepot(Depot depot)
         {
             string itemToken = GenerateToken(_depots);
 
@@ -90,21 +90,24 @@ namespace DepoiTFakeDataStorage
         }
 
 
-        public string UpdateDepot(IDepot depot)
+        public string UpdateDepot(Depot depot)
         {
             string itemToken = GenerateToken(_depots);
 
             var databaseItem = _depots.FirstOrDefault(d => d.Id == depot.Id);
 
-            if (databaseItem.Name != depot.Name) databaseItem.Name = depot.Name;
-            if (databaseItem.Adress != depot.Adress) databaseItem.Adress = depot.Adress;
-            if (databaseItem.Coordinates != depot.Coordinates) databaseItem.Coordinates = depot.Coordinates;
-            if (databaseItem.IsPublic != depot.IsPublic) databaseItem.IsPublic = depot.IsPublic;
-            if (databaseItem.Owner != depot.Owner) databaseItem.Owner = depot.Owner;
-            if ((databaseItem.Storages == null && depot.Storages != null) ||
-                (databaseItem.Storages != null && depot.Storages == null) ||
-                (databaseItem.Storages != null && depot.Storages != null && databaseItem.Storages.Equals(depot.Storages))) databaseItem.Storages = depot.Storages;
-            databaseItem.ObjectToken = itemToken;
+            if (databaseItem != null)
+            {
+                if (databaseItem.Name != depot.Name) databaseItem.Name = depot.Name;
+                if (databaseItem.Adress != depot.Adress) databaseItem.Adress = depot.Adress;
+                if (databaseItem.Coordinates != depot.Coordinates) databaseItem.Coordinates = depot.Coordinates;
+                if (databaseItem.IsPublic != depot.IsPublic) databaseItem.IsPublic = depot.IsPublic;
+                if (databaseItem.Owner != depot.Owner) databaseItem.Owner = depot.Owner;
+                if ((databaseItem.Storages == null && depot.Storages != null) ||
+                    (databaseItem.Storages != null && depot.Storages == null) ||
+                    (databaseItem.Storages != null && depot.Storages != null && databaseItem.Storages.Equals(depot.Storages))) databaseItem.Storages = depot.Storages;
+                databaseItem.ObjectToken = itemToken;
+            }
 
             return itemToken;
         }

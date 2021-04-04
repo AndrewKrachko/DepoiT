@@ -46,9 +46,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("set")]
         [HttpPost]
-        public IActionResult Set([FromBody] DepotModel depotModel)
+        public IActionResult Set([FromBody] Depot depotModel)
         {
-            if (_core.SetDepot(depotModel.GetDepot(), out var depot))
+            if (_core.SetDepot(depotModel, out var depot))
             {
                 return Ok(depot);
             }
@@ -57,9 +57,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("update")]
         [HttpPost]
-        public IActionResult Update([FromBody] DepotModel depotModel)
+        public IActionResult Update([FromBody] Depot depotModel)
         {
-            if (_core.UpdateDepot(depotModel.GetDepot(), out var depot))
+            if (_core.UpdateDepot(depotModel, out var depot))
             {
                 return Ok(depot);
             }

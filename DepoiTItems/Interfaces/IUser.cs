@@ -5,6 +5,6 @@
         string Email { get; set; }
         string Password { get; set; }
         string UserToken { get; set; }
-        IPhoto Avatar { get; set; }
+        Photo Avatar { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using DepoiTItems;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace DepiTItemsUnitTests
 {
@@ -13,8 +14,8 @@ namespace DepiTItemsUnitTests
         [Test]
         public void StorageEqualityOperators()
         {
-            var a = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new IItem[] { } };
-            var b = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new IItem[] { } };
+            var a = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new List<Item>() { } };
+            var b = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new List<Item>() { } };
             var c = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             var d = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
 
@@ -34,9 +35,9 @@ namespace DepiTItemsUnitTests
         [Test]
         public void StorageInEqualityOperators()
         {
-            var a = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new IItem[] { } };
+            var a = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new List<Item>() { } };
             var b = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
-            var c = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new IItem[] { } };
+            var c = new Storage() { Id = 1, Name = "A", NameB = "B", NameC = "C", NameSplitter = "", ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Items = new List<Item>() { } };
             var d = new Storage() { Id = 142, Name = "fwecs", NameSplitter = "xr2e", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             Storage e = null;
 
@@ -58,8 +59,8 @@ namespace DepiTItemsUnitTests
         [Test]
         public void DepotEqualityOperators()
         {
-            var a = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new IStorage[] { } };
-            var b = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new IStorage[] { } };
+            var a = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new List<Storage>() { } };
+            var b = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new List<Storage>() { } };
             var c = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             var d = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
 
@@ -79,9 +80,9 @@ namespace DepiTItemsUnitTests
         [Test]
         public void DepotInEqualityOperators()
         {
-            var a = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new IStorage[] { } };
+            var a = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new List<Storage>() { } };
             var b = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
-            var c = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new IStorage[] { } };
+            var c = new Depot() { Id = 1, Name = "A", Owner = new User() { Id = 5, Email = @"e@mail.com", Name = "User", UserToken = @"vkadbv" }, ObjectToken = @"_`iIwJx)mSs9?;6XD{GQqSE@j", Storages = new List<Storage>() { } };
             var d = new Depot() { Id = 142, Name = "fwecs", ObjectToken = @"<UWT4bl*;3bW]KO'!q:gMiq7<" };
             Depot e = null;
 

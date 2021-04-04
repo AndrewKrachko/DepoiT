@@ -6,13 +6,13 @@ namespace DepoiTItems
     {
         IEnumerable<string> GetStorageTokens(IEnumerable<int> id);
         IEnumerable<string> GetStorageTokensByDepot(IEnumerable<int> depotId);
-        IEnumerable<IStorage> GetStorages(IEnumerable<string> tokens);
+        IEnumerable<Storage> GetStorages(IEnumerable<string> tokens);
 
-        string SetStorage(IStorage storage);
-        string UpdateStorage(IStorage storage);
+        string SetStorage(Storage storage);
+        string UpdateStorage(Storage storage);
         void DropStorage(int id);
 
-        string AddItemsToStorage(int storageId, IEnumerable<IItem> items);
+        string AddItemsToStorage(int storageId, IEnumerable<Item> items);
         string RemoveItemsFromStorage(int storageId, IEnumerable<int> itemsIds);
         string[] MoveItemsBetweenStorages(IEnumerable<int> itemsIds, int sourceStorage, int recepientStorage);
     }

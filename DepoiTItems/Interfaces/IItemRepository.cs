@@ -4,10 +4,10 @@ namespace DepoiTItems
 {
     public interface IItemRepository
     {
-        bool GetItems(IEnumerable<int> id, out IEnumerable<IItem> items);
-        bool GetItemsByStorage(int storageId, out IEnumerable<IItem> items);
-        bool SetItem(IItem item, out IItem createdItem);
-        bool UpdateItem(IItem storage, out IItem createdItem);
+        bool GetItems(IEnumerable<int> id, out IEnumerable<Item> items);
+        bool GetItemsByStorage(int storageId, out IEnumerable<Item> items);
+        bool SetItem(Item item, out Item createdItem);
+        bool UpdateItem(Item storage, out Item createdItem);
         bool DropItem(int id);
     }
 }

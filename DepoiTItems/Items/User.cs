@@ -4,27 +4,21 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public class User : IUser
+    public class User : DepoiTObject, IUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string UserToken { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public IPhoto Avatar { get; set; }
-        public string ObjectToken { get; set; }
+        public Photo Avatar { get; set; }
 
         public override bool Equals(object obj)
         {
-            return obj != null
-                && obj is User user
-                && Id == user.Id
-                && Name == user.Name
+            return obj is User user
+                && base.Equals(user)
                 && UserToken == user.UserToken
                 && Email == user.Email
                 && Password == user.Password
-                && EqualityComparer<IPhoto>.Default.Equals(Avatar, user.Avatar)
-                && ObjectToken == user.ObjectToken;
+                && EqualityComparer<Photo>.Default.Equals(Avatar, user.Avatar);
         }
 
         public override int GetHashCode()

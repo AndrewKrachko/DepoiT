@@ -4,39 +4,33 @@ using System.Linq;
 
 namespace DepoiTItems
 {
-    public class Depot : IDepot
+    public class Depot : DepoiTObject, IDepot
     {
-        public IAddress Adress { get; set; }
-        public IGeoCoordinates Coordinates { get; set; }
-        public IEnumerable<IStorage> Storages { get; set; }
+        public Address Adress { get; set; }
+        public GeoCoordinates Coordinates { get; set; }
+        public List<Storage> Storages { get; set; }
         public bool IsPublic { get; set; }
-        public IUser Owner { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ObjectToken { get; set; }
+        public User Owner { get; set; }
 
         public override bool Equals(object obj)
         {
-            return obj != null
-                && obj is Depot depot
-                && EqualityComparer<IAddress>.Default.Equals(Adress, depot.Adress)
-                && EqualityComparer<IGeoCoordinates>.Default.Equals(Coordinates, depot.Coordinates)
+            return obj is Depot depot
+                && base.Equals(depot)
+                && EqualityComparer<Address>.Default.Equals(Adress, depot.Adress)
+                && EqualityComparer<GeoCoordinates>.Default.Equals(Coordinates, depot.Coordinates)
                 && ((Storages == null && depot.Storages == null) || (Storages != null && depot.Storages != null && Storages.SequenceEqual(depot.Storages)))
                 && IsPublic == depot.IsPublic
-                && EqualityComparer<IUser>.Default.Equals(Owner, depot.Owner)
-                && Id == depot.Id
-                && Name == depot.Name
-                && ObjectToken == depot.ObjectToken;
+                && EqualityComparer<User>.Default.Equals(Owner, depot.Owner);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Adress, Coordinates, Storages, IsPublic, Owner, Id, Name, ObjectToken);
+            return HashCode.Combine(base.GetHashCode(), Adress, Coordinates, Storages, IsPublic, Owner);
         }
 
-        public static bool operator ==(Depot depotA, Depot depotB) => depotA is Depot && depotB is Depot && depotA.Equals(depotB);
-        public static bool operator !=(Depot depotA, Depot depotB) => depotA is Depot && depotB is null
-            || depotA is null && depotB is Depot
-            || depotA is Depot && depotB is Depot && !depotA.Equals(depotB);
+        public static bool operator ==(Depot objectA, Depot objectB) => objectA is Depot && objectB is Depot && objectA.Equals(objectB);
+        public static bool operator !=(Depot objectA, Depot objectB) => objectA is Depot && objectB is null
+            || objectA is null && objectB is Depot
+            || objectA is Depot && objectB is Depot && !objectA.Equals(objectB);
     }
 }

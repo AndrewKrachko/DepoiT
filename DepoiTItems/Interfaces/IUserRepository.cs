@@ -2,7 +2,7 @@
 {
     public interface IUserRepository
     {
-        bool GetUserByName(string name, out IUser user);
-        bool GetUserByToken(string userToken, out IUser user);
+        bool GetUserByName(string name, out User user);
+        bool GetUserByToken(string userToken, out User user);
     }
 }

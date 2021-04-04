@@ -8,7 +8,7 @@ namespace DepoiTRepository
 {
     public partial class Repository
     {
-        public bool GetStorages(IEnumerable<int> id, out IEnumerable<IStorage> storages)
+        public bool GetStorages(IEnumerable<int> id, out IEnumerable<Storage> storages)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetStoragesByDepot(int depotId, out IEnumerable<IStorage> storages)
+        public bool GetStoragesByDepot(int depotId, out IEnumerable<Storage> storages)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool SetStorage(IStorage storage, out IStorage createdStorage)
+        public bool SetStorage(Storage storage, out Storage createdStorage)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool UpdateStorage(IStorage storage, out IStorage updatedStorage)
+        public bool UpdateStorage(Storage storage, out Storage updatedStorage)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace DepoiTRepository
             return !_dataStorage.GetStorageTokens(new[] { id }).Any();
         }
 
-        public bool AddItemsToStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage)
+        public bool AddItemsToStorage(int storageId, IEnumerable<Item> items, out Storage updatedStorage)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool RemoveItemsFromStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage)
+        public bool RemoveItemsFromStorage(int storageId, IEnumerable<Item> items, out Storage updatedStorage)
         {
             try
             {

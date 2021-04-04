@@ -13,7 +13,7 @@ namespace DepoiTRepository
             return !_dataStorage.GetDepotTokens(new[] { id }).Any();
         }
 
-        public bool GetDepots(IEnumerable<int> id, out IEnumerable<IDepot> depots)
+        public bool GetDepots(IEnumerable<int> id, out IEnumerable<Depot> depots)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots)
+        public bool GetDepotsByUser(int userId, out IEnumerable<Depot> depots)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool SetDepot(IDepot depot, out IDepot createdDepot)
+        public bool SetDepot(Depot depot, out Depot createdDepot)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool UpdateDepot(IDepot depot, out IDepot updatedDepot)
+        public bool UpdateDepot(Depot depot, out Depot updatedDepot)
         {
             try
             {
@@ -70,13 +70,13 @@ namespace DepoiTRepository
                 throw ex;
             }
         }
-        public bool AddStoragesToDepot(int depotId, IEnumerable<IStorage> storages, out IDepot updatedDepot)
+        public bool AddStoragesToDepot(int depotId, IEnumerable<Storage> storages, out Depot updatedDepot)
         {
             try
             {
                 updatedDepot = _dataStorage.GetDepots(new[] { _dataStorage.AddStogaresToDepot(depotId, storages) }).FirstOrDefault();
 
-                return updatedDepot.Storages.Intersect(storages).Count() == storages.Count();
+                return updatedDepot != null && updatedDepot.Storages.Intersect(storages).Count() == storages.Count();
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<IStorage> storages, out IDepot updatedDepot)
+        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<Storage> storages, out Depot updatedDepot)
         {
             try
             {

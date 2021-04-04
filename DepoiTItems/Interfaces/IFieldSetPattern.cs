@@ -6,6 +6,6 @@ namespace DepoiTItems
 {
     public interface IFieldSetPattern<T> : IFieldPattern<T>
     {
-        IEnumerable<T> ValueSet { get; set; }
+        List<T> ValueSet { get; set; }
     }
 }

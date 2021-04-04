@@ -1,8 +1,10 @@
-﻿namespace DepoiTItems
+﻿using System.Collections.Generic;
+
+namespace DepoiTItems
 {
     public interface IField<T> : IObject
     {
-        IFieldPattern<T> FieldPattern { get; set; }
+        FieldPattern<T> FieldPattern { get; set; }
         T Value { get; set; }
         bool Validate { get; set; }
     }

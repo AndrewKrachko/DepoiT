@@ -4,13 +4,24 @@ using System.Text;
 
 namespace DepoiTItems
 {
-    public class NumberField : IField<double>
+    public class NumberField : DepoiTObject, IField<double>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public double Value { get; set; }
         public bool Validate { get; set; }
-        public IFieldPattern<double> FieldPattern { get; set; }
-        public string ObjectToken { get; set; }
+        public FieldPattern<double> FieldPattern { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is NumberField field &&
+                   base.Equals(obj) &&
+                   Value == field.Value &&
+                   Validate == field.Validate &&
+                   EqualityComparer<IFieldPattern<double>>.Default.Equals(FieldPattern, field.FieldPattern);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Value, Validate, FieldPattern);
+        }
     }
 }

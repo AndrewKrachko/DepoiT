@@ -7,6 +7,6 @@ namespace DepoiTItems
         string NameB { get; set; }
         string NameC { get; set; }
         string NameSplitter { get; set; }
-        IEnumerable<IItem> Items { get; set; }
+        List<Item> Items { get; set; }
     }
 }

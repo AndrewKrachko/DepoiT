@@ -8,7 +8,7 @@ namespace DepoiTRepository
 {
     public partial class Repository
     {
-        public bool GetItems(IEnumerable<int> id, out IEnumerable<IItem> items)
+        public bool GetItems(IEnumerable<int> id, out IEnumerable<Item> items)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetItemsByStorage(int storageId, out IEnumerable<IItem> items)
+        public bool GetItemsByStorage(int storageId, out IEnumerable<Item> items)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool SetItem(IItem item, out IItem createdItem)
+        public bool SetItem(Item item, out Item createdItem)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool UpdateItem(IItem item, out IItem updatedItem)
+        public bool UpdateItem(Item item, out Item updatedItem)
         {
             try
             {

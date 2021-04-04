@@ -46,9 +46,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("set")]
         [HttpPost]
-        public IActionResult Set(int parentId, [FromBody] StorageModel storageModel)
+        public IActionResult Set(int parentId, [FromBody] Storage storageModel)
         {
-            if (_core.SetStorage(parentId, storageModel.GetStorage(), out var storage))
+            if (_core.SetStorage(parentId, storageModel, out var storage))
             {
                 return Ok(storage);
             }
@@ -57,9 +57,9 @@ namespace DepoiTWeb.Controllers
 
         [Route("update")]
         [HttpPost]
-        public IActionResult Update([FromBody] StorageModel storageModel)
+        public IActionResult Update([FromBody] Storage storageModel)
         {
-            if (_core.UpdateStorage(storageModel.GetStorage(), out var storage))
+            if (_core.UpdateStorage(storageModel, out var storage))
             {
                 return Ok(storage);
             }

@@ -6,10 +6,10 @@ namespace DepoiTItems
     {
         IEnumerable<string> GetItemTokens(IEnumerable<int> id);
         IEnumerable<string> GetItemTokensByStorage(IEnumerable<int> storageId);
-        IEnumerable<IItem> GetItems(IEnumerable<string> tokens);
+        IEnumerable<Item> GetItems(IEnumerable<string> tokens);
 
-        string SetItem(IItem item);
-        string UpdateItem(IItem item);
+        string SetItem(Item item);
+        string UpdateItem(Item item);
         void DropItem(int id);
     }
 }

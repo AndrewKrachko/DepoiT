@@ -18,7 +18,7 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
-        public bool AddStoragesToDepot(int depotId, IEnumerable<IStorage> storages)
+        public bool AddStoragesToDepot(int depotId, IEnumerable<Storage> storages)
         {
             return _repository.AddStoragesToDepot(depotId, storages, out var depot);
         }
@@ -38,7 +38,7 @@ namespace DepoiTCore
             return _repository.DropStorage(id);
         }
 
-        public bool GetDepot(int id, out IDepot depot)
+        public bool GetDepot(int id, out Depot depot)
         {
             if (_repository.GetDepots(new[] { id }, out var depots))
             {
@@ -52,7 +52,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetDepotsByUser(int userId, out IEnumerable<IDepot> depots)
+        public bool GetDepotsByUser(int userId, out IEnumerable<Depot> depots)
         {
             if (_repository.GetDepotsByUser(userId, out depots))
             {
@@ -64,7 +64,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetItem(int id, out IItem item)
+        public bool GetItem(int id, out Item item)
         {
             if (_repository.GetItems(new[] { id }, out var items))
             {
@@ -78,7 +78,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetItemsByStorage(int storageId, out IEnumerable<IItem> items)
+        public bool GetItemsByStorage(int storageId, out IEnumerable<Item> items)
         {
             if (_repository.GetItemsByStorage(storageId, out items))
             {
@@ -90,7 +90,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetStorage(int id, out IStorage storage)
+        public bool GetStorage(int id, out Storage storage)
         {
             if (_repository.GetStorages(new[] { id }, out var storages))
             {
@@ -104,7 +104,7 @@ namespace DepoiTCore
             }
         }
 
-        public bool GetStoragesByDepot(int depotId, out IEnumerable<IStorage> storages)
+        public bool GetStoragesByDepot(int depotId, out IEnumerable<Storage> storages)
         {
             if (_repository.GetStoragesByDepot(depotId, out storages))
             {
@@ -121,12 +121,12 @@ namespace DepoiTCore
             return _repository.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot);
         }
 
-        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<IStorage> storages)
+        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<Storage> storages)
         {
             return _repository.RemoveStoragesFromDepot(depotId, storages, out var depot);
         }
 
-        public bool SetDepot(IDepot depot, out IDepot createdDepot)
+        public bool SetDepot(Depot depot, out Depot createdDepot)
         {
             var userToken = depot.Owner.UserToken;
 
@@ -144,7 +144,7 @@ namespace DepoiTCore
             return false;
         }
 
-        public bool SetItem(int storageId, IItem item, out IItem createdItem)
+        public bool SetItem(int storageId, Item item, out Item createdItem)
         {
             if (_repository.GetStorages(new[] { storageId }, out var _))
             {
@@ -159,7 +159,7 @@ namespace DepoiTCore
             return false;
         }
 
-        public bool SetStorage(int depotId, IStorage storage, out IStorage createdStorage)
+        public bool SetStorage(int depotId, Storage storage, out Storage createdStorage)
         {
             if (_repository.GetDepots(new[] { depotId }, out var _))
             {
@@ -174,7 +174,7 @@ namespace DepoiTCore
             return false;
         }
 
-        public bool UpdateDepot(IDepot depot, out IDepot createdDepot)
+        public bool UpdateDepot(Depot depot, out Depot createdDepot)
         {
             var userToken = depot.Owner.UserToken;
 
@@ -192,7 +192,7 @@ namespace DepoiTCore
             return false;
         }
 
-        public bool UpdateItem(IItem item, out IItem updatedItem)
+        public bool UpdateItem(Item item, out Item updatedItem)
         {
             if (_repository.UpdateItem(item, out updatedItem))
             {
@@ -203,7 +203,7 @@ namespace DepoiTCore
             return false;
         }
 
-        public bool UpdateStorage(IStorage storage, out IStorage updatedStorage)
+        public bool UpdateStorage(Storage storage, out Storage updatedStorage)
         {
             if (_repository.UpdateStorage(storage, out updatedStorage))
             {

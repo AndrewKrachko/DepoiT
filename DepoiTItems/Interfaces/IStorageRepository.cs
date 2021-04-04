@@ -4,13 +4,13 @@ namespace DepoiTItems
 {
     public interface IStorageRepository
     {
-        bool GetStorages(IEnumerable<int> id, out IEnumerable<IStorage> storages);
-        bool GetStoragesByDepot(int depotId, out IEnumerable<IStorage> storages);
-        bool SetStorage(IStorage storage, out IStorage createdStorage);
-        bool UpdateStorage(IStorage storage, out IStorage createdStorage);
+        bool GetStorages(IEnumerable<int> id, out IEnumerable<Storage> storages);
+        bool GetStoragesByDepot(int depotId, out IEnumerable<Storage> storages);
+        bool SetStorage(Storage storage, out Storage createdStorage);
+        bool UpdateStorage(Storage storage, out Storage createdStorage);
         bool DropStorage(int id);
-        bool AddItemsToStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage);
-        bool RemoveItemsFromStorage(int storageId, IEnumerable<IItem> items, out IStorage updatedStorage);
+        bool AddItemsToStorage(int storageId, IEnumerable<Item> items, out Storage updatedStorage);
+        bool RemoveItemsFromStorage(int storageId, IEnumerable<Item> items, out Storage updatedStorage);
         bool MoveItemsBetweenStorages(IEnumerable<int> itemIds, int sourceStorage, int recepientStorage);
     }
 }

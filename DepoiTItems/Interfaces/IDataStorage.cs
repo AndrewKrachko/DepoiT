@@ -7,7 +7,7 @@ namespace DepoiTItems
 {
     public interface IDataStorage : IDepotDataStorage, IStorageDataStorage, IItemDataStorage
     {
-        IUser GetUserByName(string name);
-        IUser GetUserByToken(string userToken);
+        User GetUserByName(string name);
+        User GetUserByToken(string userToken);
     }
 }

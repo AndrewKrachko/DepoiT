@@ -8,17 +8,17 @@ namespace DepoiTRepository
     public partial class Repository : IRepository
     {
         private IDataStorage _dataStorage;
-        private readonly ItemCache<IDepot> _depotItemCache;
-        private readonly ItemCache<IStorage> _storageItemCache;
-        private readonly ItemCache<IItem> _itemItemCache;
+        private readonly ItemCache<Depot> _depotItemCache;
+        private readonly ItemCache<Storage> _storageItemCache;
+        private readonly ItemCache<Item> _itemItemCache;
 
 
         public Repository(IDataStorage dataStorage)
         {
             _dataStorage = dataStorage;
-            _depotItemCache = new ItemCache<IDepot>();
-            _storageItemCache = new ItemCache<IStorage>();
-            _itemItemCache = new ItemCache<IItem>();
+            _depotItemCache = new ItemCache<Depot>();
+            _storageItemCache = new ItemCache<Storage>();
+            _itemItemCache = new ItemCache<Item>();
         }
 
         public void SetDataStorage(IDataStorage dataStorage)
@@ -26,7 +26,7 @@ namespace DepoiTRepository
             _dataStorage = dataStorage;
         }
 
-        public bool GetUserByName(string name, out IUser user)
+        public bool GetUserByName(string name, out User user)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace DepoiTRepository
             }
         }
 
-        public bool GetUserByToken(string userToken, out IUser user)
+        public bool GetUserByToken(string userToken, out User user)
         {
             try
             {
