@@ -5,7 +5,7 @@
         Number,
         NumberWithTolerance,
         NumberWithDifferentialTolerance,
-        NubmberFromSet,
+        NumberFromSet,
         StringValue,
         StringValueFromSet
     }

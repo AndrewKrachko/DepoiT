@@ -10,7 +10,7 @@
   <Class Name="DepoiTItems.FieldPattern" Collapsed="true">
     <Position X="8" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAgAAAAAAAAgAAAAAAgAAAAAIEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAADAAAAAAAAAgAAAAAAgAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Fields\FieldPattern.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -88,7 +88,7 @@
   <Class Name="DepoiTItems.StringPattern" Collapsed="true">
     <Position X="13" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Fields\StringPattern.cs</FileName>
     </TypeIdentifier>
   </Class>

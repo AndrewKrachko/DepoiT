@@ -7,13 +7,15 @@ namespace DepoiTItems
     public abstract class FieldPattern : SerializableDepoiTObject
     {
         [JsonIgnore]
-        public bool IsRequired { get; set; }
+        public bool IsRequired { get; set; } = false;
         [JsonIgnore]
-        public FieldTypeEnum FielddType { get; set; }
+        public FieldTypeEnum FieldType { get; }
+        [JsonIgnore]
+        public User Owner { get; set; }
 
-        public override void DeserializeValue()
+        public FieldPattern(FieldTypeEnum fieldTypeEnum)
         {
-            throw new NotImplementedException();
+            FieldType = fieldTypeEnum;
         }
 
         public override bool Equals(object obj)
@@ -21,17 +23,12 @@ namespace DepoiTItems
             return obj is FieldPattern pattern
                 && base.Equals(obj)
                 && IsRequired == pattern.IsRequired
-                && FielddType == pattern.FielddType;
+                && FieldType == pattern.FieldType;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), IsRequired, FielddType);
-        }
-
-        public override void SerializeValue()
-        {
-            throw new NotImplementedException();
+            return HashCode.Combine(base.GetHashCode(), IsRequired, FieldType);
         }
     }
 }

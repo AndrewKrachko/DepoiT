@@ -7,12 +7,17 @@ namespace DepoiTItems
         public double ToleranceMin { get; set; }
         public double ToleranceMax { get; set; }
 
+        public NumberWithDifferentialTolerancePattern(): base (FieldTypeEnum.NumberWithDifferentialTolerance)
+        {
+
+        }
+
         public override bool Equals(object obj)
         {
             return obj is NumberWithDifferentialTolerancePattern tolerance
                 && base.Equals(tolerance)
                 && IsRequired == tolerance.IsRequired
-                && FielddType == tolerance.FielddType
+                && FieldType == tolerance.FieldType
                 && DefaultValue == tolerance.DefaultValue
                 && ToleranceMin == tolerance.ToleranceMin
                 && ToleranceMax == tolerance.ToleranceMax;
@@ -23,7 +28,7 @@ namespace DepoiTItems
             HashCode hash = new HashCode();
             hash.Add(base.GetHashCode());
             hash.Add(IsRequired);
-            hash.Add(FielddType);
+            hash.Add(FieldType);
             hash.Add(DefaultValue);
             hash.Add(ToleranceMin);
             hash.Add(ToleranceMax);

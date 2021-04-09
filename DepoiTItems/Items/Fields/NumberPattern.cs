@@ -6,6 +6,16 @@ namespace DepoiTItems
     {
         public double DefaultValue { get; set; }
 
+        public NumberPattern(): base(FieldTypeEnum.Number)
+        {
+
+        }
+
+        protected NumberPattern(FieldTypeEnum fieldTypeEnum): base(fieldTypeEnum)
+        {
+
+        }
+
         public override void DeserializeValue()
         {
             DefaultValue = JsonSerializer.Deserialize<NumberPattern>(SerializedValue).DefaultValue;
@@ -13,7 +23,7 @@ namespace DepoiTItems
 
         public override void SerializeValue()
         {
-            base.SerializeValue();
+            SerializedValue = JsonSerializer.Serialize(this);
         }
     }
 }

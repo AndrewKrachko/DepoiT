@@ -12,6 +12,8 @@ namespace DepoiTFakeDataStorage
         private List<User> _users;
 
         private List<Address> _addresses;
+        private readonly List<FieldPattern> _fieldPatterns;
+        private readonly List<Field> _values;
         private List<Pattern> _patterns;
         private List<Depot> _depots;
 
@@ -37,11 +39,35 @@ namespace DepoiTFakeDataStorage
                 new Address() { Id = 2, Street = "Odoevskogo", ObjectToken =@"""$L<}HHog!y6uR]6P|EN(ynT\", },
             };
 
+            _fieldPatterns = new List<FieldPattern>()
+            {
+                new StringPattern() { Id=0, Name="Name", IsRequired=true, DefaultValue =string.Empty, SerializedValue= string.Empty, Owner=_users[0], ObjectToken = @")Ri;/!s}!GRdN`j$""Vo""%X4<#" },
+                new NumberPattern() { Id=1, Name="Quantity", IsRequired=true, DefaultValue =0, SerializedValue= string.Empty, Owner=_users[0], ObjectToken = @"T,7^pssK#gGz,JSM_b_`/6f<f" },
+                new StringSetPattern() {Id =2, Name="Material", StringSet = new List<string>(){ "Still", "Brass", "Copper" }, DefaultValue="Copper", SerializedValue=string.Empty, Owner=_users[0], ObjectToken=@"s%EPtP>N9Zt]?/R^9KwC(t,=S" },
+                new NumberSetPattern() {Id=3, Name="Step", ValueSet= new List<double> { 1, 1.25, 2, 2.25, 2.5, 5 }, DefaultValue = 2.5, SerializedValue= string.Empty, Owner = _users[1], ObjectToken=@"EtSZs>Dyw{nNz-8)Mrn^o@S-#" },
+                new NumberWithSingleTolerancePattern(){ Id=4, Name="Default opeerating temperature", DefaultValue=25, Tolerance=2, SerializedValue=string.Empty, Owner=_users[0], ObjectToken=@"tinx^}w){PZirE=PcG2b0>>`:" },
+                new NumberWithDifferentialTolerancePattern() { Id=5,Name="Ice", DefaultValue=1, ToleranceMin=-0.2, ToleranceMax=0.4, SerializedValue=string.Empty, Owner=_users[0],  ObjectToken=@"Z#<^c%AFX}SU!9}uF}[\>YMR."},
+            };
+
+            _values = new List<Field>()
+            { 
+                new StringField(){ Id=0, FieldPattern = _fieldPatterns[0], Value="Full metall jacket shell", SerializedValue = string.Empty, ObjectToken = @",wAIrVL/^${[I9L:C;Fhzb/4l" }, 
+                new NumberField(){ Id=1, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"h@a$z""TiPW-~{dG(GB5#:|d0C" }, 
+                new StringField(){ Id=2, FieldPattern = _fieldPatterns[2], Value="Still", SerializedValue = string.Empty, ObjectToken = @"z>(i3Hi.\*7i+b#Gqx`?:FU}`" }, 
+                new StringField(){ Id=3, FieldPattern = _fieldPatterns[0], Value="Some Diode", SerializedValue = string.Empty, ObjectToken = @"SAx2RkZQ`!bM~=0Bq@[1><^2Z" }, 
+                new NumberField(){ Id=4, FieldPattern = _fieldPatterns[1], Value=1000, SerializedValue = string.Empty, ObjectToken = @"H$%o)Th)*^(oz+>\8Ja@xr[Q{" }, 
+                new NumberField(){ Id=5, FieldPattern = _fieldPatterns[3], Value=2.25, SerializedValue = string.Empty, ObjectToken = @"G'ymB8afV+gVaWLxEu^(Rv5>T" }, 
+                new NumberWithSingleToleranceField(){ Id=6, FieldPattern = _fieldPatterns[4], Value=100, Tolerance=7, SerializedValue = string.Empty, ObjectToken = @"'q{qaTHRraMm;fGE)D!U'Vr6F" }, 
+                new NumberField(){ Id=7, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"IS4gNP}fK.WK)I1Z2""K""_3NK7" }, 
+                new NumberField(){ Id=8, FieldPattern = _fieldPatterns[3], Value=1.25, SerializedValue = string.Empty, ObjectToken = @"#h|6;Jmdf!{]sjkG}Jg|ryDdD" }, 
+                new NumberWithDifferentialToleranceField(){ Id=9, FieldPattern = _fieldPatterns[5], Value=0.2, ToleranceMin=-0.02, ToleranceMax=0.01, SerializedValue = string.Empty, ObjectToken = @"x(c6#6%hQKg""P1bheBH5|=7^Y" }, 
+            };
+
             _patterns = new List<Pattern>()
             {
-                new Pattern() { Id=0, Name="Gun Shell", Owner = _users[0], ObjectToken = @"'WpHC:$Q4sM;|>(tj{/ru1FYC" },
-                new Pattern() { Id=1, Name="Bipolar transistor", Owner = _users[1], ObjectToken = @"p:t?Q(U]iON{/O,5Kt/0x[;Vt" },
-                new Pattern() { Id=2, Name="Diod", Owner = _users[1], ObjectToken = @"Z4W$!u18&Q!.2blw\4mXx[L#]" },
+                new Pattern() { Id=0, Name="Gun Shell", Owner = _users[0], FieldPatterns = new List<FieldPattern>() { _fieldPatterns[0], _fieldPatterns[1], _fieldPatterns[2]}, ObjectToken = @"'WpHC:$Q4sM;|>(tj{/ru1FYC" },
+                new Pattern() { Id=1, Name="Bipolar transistor", Owner = _users[1], FieldPatterns = new List<FieldPattern>() { _fieldPatterns[0], _fieldPatterns[1], _fieldPatterns[3], _fieldPatterns[4] }, ObjectToken = @"p:t?Q(U]iON{/O,5Kt/0x[;Vt" },
+                new Pattern() { Id=2, Name="Diod", Owner = _users[1], FieldPatterns = new List<FieldPattern>() { _fieldPatterns[0], _fieldPatterns[1], _fieldPatterns[3], _fieldPatterns[5] }, ObjectToken = @"Z4W$!u18&Q!.2blw\4mXx[L#]" },
             };
 
             _items = new List<Item>()
