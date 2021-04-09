@@ -2,5 +2,6 @@
 {
     public interface IDataStorage : IDepotDataStorage, IStorageDataStorage, IItemDataStorage, IUserDataStorage
     {
+        IPatternDataStorage PatternDataStorage { get; set; }
     }
 }

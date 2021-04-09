@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace DepoiTItems
 {
-    public class FieldSetPattern<T> : FieldPattern<T>, IFieldSetPattern<T>
+    public class NumberSetPattern : NumberPattern
     {
-        public List<T> ValueSet { get; set; }
+        public List<double> ValueSet { get; set; }
 
         public override bool Equals(object obj)
         {
-            return obj is FieldSetPattern<T> pattern &&
+            return obj is NumberSetPattern pattern &&
                    base.Equals(obj) &&
                    IsRequired == pattern.IsRequired &&
                    FielddType == pattern.FielddType &&
-                   EqualityComparer<T>.Default.Equals(DefaultValue, pattern.DefaultValue) &&
-                   EqualityComparer<List<T>>.Default.Equals(ValueSet, pattern.ValueSet);
+                   DefaultValue == pattern.DefaultValue &&
+                   EqualityComparer<List<double>>.Default.Equals(ValueSet, pattern.ValueSet);
         }
 
         public override int GetHashCode()

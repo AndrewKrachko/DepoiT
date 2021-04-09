@@ -2,14 +2,14 @@
 
 namespace DepoiTItems
 {
-    public class FieldWithDifferentialTolerance : FieldPattern<double>, IFieldWithTolerancePattern
+    public class NumberWithDifferentialTolerancePattern : NumberPattern
     {
         public double ToleranceMin { get; set; }
         public double ToleranceMax { get; set; }
 
         public override bool Equals(object obj)
         {
-            return obj is FieldWithDifferentialTolerance tolerance
+            return obj is NumberWithDifferentialTolerancePattern tolerance
                 && base.Equals(tolerance)
                 && IsRequired == tolerance.IsRequired
                 && FielddType == tolerance.FielddType

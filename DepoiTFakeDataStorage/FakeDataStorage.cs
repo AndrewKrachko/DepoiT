@@ -12,7 +12,7 @@ namespace DepoiTFakeDataStorage
         private List<User> _users;
 
         private List<Address> _addresses;
-
+        private List<Pattern> _patterns;
         private List<Depot> _depots;
 
         private List<Storage> _storages;
@@ -37,11 +37,18 @@ namespace DepoiTFakeDataStorage
                 new Address() { Id = 2, Street = "Odoevskogo", ObjectToken =@"""$L<}HHog!y6uR]6P|EN(ynT\", },
             };
 
+            _patterns = new List<Pattern>()
+            {
+                new Pattern() { Id=0, Name="Gun Shell", Owner = _users[0], ObjectToken = @"'WpHC:$Q4sM;|>(tj{/ru1FYC" },
+                new Pattern() { Id=1, Name="Bipolar transistor", Owner = _users[1], ObjectToken = @"p:t?Q(U]iON{/O,5Kt/0x[;Vt" },
+                new Pattern() { Id=2, Name="Diod", Owner = _users[1], ObjectToken = @"Z4W$!u18&Q!.2blw\4mXx[L#]" },
+            };
+
             _items = new List<Item>()
             {
-                new Item() { Id = 0, Name = "Gun shell", ObjectToken = @"VOO_LUM21?9Oe3:4&%'N.0`aY" },
-                new Item() { Id = 1, Name = "KT-3102", ObjectToken = @"R<sUO\vyHM|-5""gYAlRb\v`%`" },
-                new Item() { Id = 2, Name = "IN-4001", ObjectToken = @"?l5HfFmm'y9X\`bAU>e='o$>t" },
+                new Item() { Id = 0, Name = "Gun shell", Pattern = _patterns[0], ObjectToken = @"VOO_LUM21?9Oe3:4&%'N.0`aY" },
+                new Item() { Id = 1, Name = "KT-3102", Pattern = _patterns[1], ObjectToken = @"R<sUO\vyHM|-5""gYAlRb\v`%`" },
+                new Item() { Id = 2, Name = "IN-4001", Pattern = _patterns[2], ObjectToken = @"?l5HfFmm'y9X\`bAU>e='o$>t" },
             };
 
             _storages = new List<Storage>()
@@ -66,7 +73,11 @@ namespace DepoiTFakeDataStorage
                     Storages = new List<Storage>(){ _storages[6], _storages[7] } },
                 new Depot() {Id = 3, Name = "Empty depot", Owner = _users[1], ObjectToken=@"lB/}{ZZos1obR`'/?/'O!c-oA" },
             };
+
+            PatternDataStorage = new PatternDataStorage(_patterns, _items);
         }
+
+        public IPatternDataStorage PatternDataStorage { get; set; }
 
         public User GetUserByName(string name) => _users.FirstOrDefault(u => u.Name == name);
 

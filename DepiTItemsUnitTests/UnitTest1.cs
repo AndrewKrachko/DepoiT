@@ -92,7 +92,7 @@ namespace DepiTItemsUnitTests
             var resultD = a != e;
             var resultE = a != null;
             var resultF = a != null;
-            
+
 
             Assert.IsTrue(resultA, "InEquality operator is not working properly");
             Assert.IsTrue(resultB, "InEquality operator is not working properly");
@@ -102,5 +102,23 @@ namespace DepiTItemsUnitTests
             Assert.IsTrue(resultF, "InEquality operator is not working properly");
         }
 
+
+        [Test]
+        public void FieldSerialization()
+        {
+            var field = new NumberField() { Id = 11, Value = 1000.1103 };
+
+            field.SerializeValue();
+            Assert.AreEqual(@"{""FieldPattern"":null,""Value"":1000.1103}", field.SerializedValue);
+        }
+
+        [Test]
+        public void FieldDedserialization()
+        {
+            var field = new NumberField() { Id = 12, SerializedValue = @"{""FieldPattern"":null,""Value"":1000.1104}" };
+
+            field.DeserializeValue();
+            Assert.AreEqual(1000.1104, field.Value);
+        }
     }
 }

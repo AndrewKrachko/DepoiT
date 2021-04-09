@@ -5,5 +5,7 @@
         bool IsRequired { get; set; }
         FieldTypeEnum FielddType { get; set; }
         T DefaultValue { get; set; }
+        void SerializePattern();
+        void DeserializePattern();
     }
 }

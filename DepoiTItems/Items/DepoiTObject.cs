@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace DepoiTItems
 {
     public class DepoiTObject : IObject
     {
+        [JsonIgnore]
         public int Id { get; set; }
+        [JsonIgnore]
         public string Name { get; set; }
+        [JsonIgnore]
         public string ObjectToken { get; set; }
 
         public override bool Equals(object obj)

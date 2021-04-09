@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DepoiTItems.Field" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.FieldPattern" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAgAAAAAAAAgAAAAAAgAAAAAIEAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\FieldPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberSetPattern" Collapsed="true">
+    <Position X="3.25" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAEAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\FieldSetPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberWithDifferentialTolerancePattern" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAgAAAAAAAAAAAAIIAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberWithDifferentialTolerancePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberField" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAACAAAAAgAAAAAAAAAAAAIEAAAAgAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberWithDifferentialToleranceField" Collapsed="true">
+    <Position X="15.25" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberWithDifferentialToleranceField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.StringField" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAACAAAAAgAAAAAAAAAAAAIEAAAAgAAAAAAA=</HashCode>
+      <FileName>Items\Fields\StringField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.SerializableDepoiTObject" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\SerializableDepoiTObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.NumberWithSingleTolerancePattern" Collapsed="true">
+    <Position X="5.75" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberWithSingleTolerancePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.Item" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAQAAAAAIAAAAAAAAAAgiA=</HashCode>
+      <FileName>Items\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberPattern" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.NumberWithSingleToleranceField" Collapsed="true">
+    <Position X="18.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\NumberWithSingleToleranceField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.StringPattern" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Items\Fields\StringPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.StringSetPattern" Collapsed="true">
+    <Position X="13" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Fields\StringSetPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.Address" Collapsed="true">
+    <Position X="24.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAARAAAAAAAAAIgAAAAEAAAAIAAIAAAAIAUAAAAiA=</HashCode>
+      <FileName>Items\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.DepoiTObject" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAgAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\DepoiTObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.Depot" Collapsed="true">
+    <Position X="33.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAAAAAAAICgAAIEAAAAAAAAAAiA=</HashCode>
+      <FileName>Items\Depot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.GeoCoordinates" Collapsed="true">
+    <Position X="37.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAgAAIAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\GeoCoordinates.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.Pattern" Collapsed="true">
+    <Position X="40" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Pattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepoiTItems.Photo" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Items\Photo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.Storage" Collapsed="true">
+    <Position X="28.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAACAAAgAAQAAAAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Items\Storage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DepoiTItems.User" Collapsed="true">
+    <Position X="35.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAgAQAAAAAAAAAAJACAAAAAAAAAiA=</HashCode>
+      <FileName>Items\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

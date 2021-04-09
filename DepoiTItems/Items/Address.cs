@@ -2,7 +2,7 @@
 
 namespace DepoiTItems
 {
-    public class Address : DepoiTObject, IAddress
+    public class Address : DepoiTObject
     {
         public string Country { get; set; } = "Belarus";
         public string District { get; set; } = "Minsk distr";

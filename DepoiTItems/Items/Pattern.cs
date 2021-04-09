@@ -2,8 +2,9 @@
 
 namespace DepoiTItems
 {
-    public class Pattern : DepoiTObject, IPattern
+    public class Pattern : DepoiTObject
     {
-        public List<FieldPattern<object>> FieldPatterns { get; set; }
+        public List<FieldPattern> FieldPatterns { get; set; }
+        public User Owner { get; set; }
     }
 }
