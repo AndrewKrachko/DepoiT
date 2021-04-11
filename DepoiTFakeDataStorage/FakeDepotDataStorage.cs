@@ -88,7 +88,6 @@ namespace DepoiTFakeDataStorage
             return itemToken;
         }
 
-
         public string UpdateDepot(Depot depot)
         {
             string itemToken = GenerateToken(_depots);

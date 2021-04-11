@@ -1,6 +1,6 @@
 ﻿namespace DepoiTItems
 {
-    public interface ICore : IDepotCore, IStorageCore, IItemCore
+    public interface ICore : IDepotCore, IStorageCore, IItemCore, IUserCore
     {
     }
 }

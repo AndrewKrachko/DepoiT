@@ -1,0 +1,10 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=_CHANGE_ME;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "Token": {
+    "Key": "|?e9D4hNq?H!)8|bo8@zukSVT7@50RP>:Tyq^7%xgY9h!Po^bJxa=r92k/c.rS>?n*fS>+%X3G3=RiV%FaRdYn\"G<h'OSv&4;yyui<AWF@Ou_z^\"X^f2\"Xe~)?8U%T&;",
+    "Issuer": "http://localhost:8888",
+    "Audience": "http://localhost:8888"
+  }
+}

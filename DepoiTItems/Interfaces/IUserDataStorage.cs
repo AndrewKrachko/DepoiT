@@ -1,8 +1,15 @@
-﻿namespace DepoiTItems
+﻿using System.Collections.Generic;
+
+namespace DepoiTItems
 {
     public interface IUserDataStorage
     {
-        User GetUserByName(string name);
-        User GetUserByToken(string userToken);
+        IEnumerable<string> GetUserTokens(IEnumerable<int> id);
+        User GetUserByNameOrByEmail(string name);
+        IEnumerable<User> GetUserByToken(IEnumerable<string> tokens);
+        string SetUser(User user);
+        string UpdateUser(User user);
+        void DropUser(int id);
+
     }
 }

@@ -37,6 +37,11 @@ namespace DepoiTCore
             return _repository.StorageRepository.DropStorage(id);
         }
 
+        public bool DropUser(int userId)
+        {
+            return _repository.UserRepository.DropUser(userId);
+        }
+
         public bool GetDepot(int id, out Depot depot)
         {
             if (_repository.DepotRepository.GetDepots(new[] { id }, out var depots))
@@ -115,6 +120,25 @@ namespace DepoiTCore
             }
         }
 
+        public bool GetUser(int id, out User user)
+        {
+            if (_repository.UserRepository.GetUsers(new[] { id }, out var users))
+            {
+                user = users.FirstOrDefault();
+                return true;
+            }
+            else
+            {
+                user = null;
+                return false;
+            }
+        }
+
+        public bool GetUserByNameOrEmail(string value, out User user)
+        {
+            return _repository.UserRepository.GetUserByName(value, out user);
+        }
+
         public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
         {
             return _repository.DepotRepository.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot);
@@ -173,6 +197,11 @@ namespace DepoiTCore
             return false;
         }
 
+        public bool SetUser(User user)
+        {
+            return _repository.UserRepository.SetUser(user, out var createdUser);
+        }
+
         public bool UpdateDepot(Depot depot, out Depot createdDepot)
         {
             var userToken = depot.Owner.UserToken;
@@ -210,6 +239,17 @@ namespace DepoiTCore
             }
 
             updatedStorage = null;
+            return false;
+        }
+
+        public bool UpdateUser(User user, out User updatedUser)
+        {
+            if (_repository.UserRepository.UpdateUser(user, out updatedUser))
+            {
+                return true;
+            }
+
+            updatedUser = null;
             return false;
         }
     }

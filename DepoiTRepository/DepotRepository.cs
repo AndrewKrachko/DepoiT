@@ -80,6 +80,7 @@ namespace DepoiTRepository
                 throw ex;
             }
         }
+
         public bool AddStoragesToDepot(int depotId, IEnumerable<Storage> storages, out Depot updatedDepot)
         {
             try
