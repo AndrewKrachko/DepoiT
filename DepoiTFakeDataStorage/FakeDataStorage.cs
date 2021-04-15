@@ -105,7 +105,7 @@ namespace DepoiTFakeDataStorage
 
         public IPatternDataStorage PatternDataStorage { get; set; }
 
-        public User GetUserByNameOrByEmail(string name) => _users.FirstOrDefault(u => u.Name.ToUpper() == name || u.Email.ToUpper() == name);
+        public User GetUserByNameOrByEmail(string name) => _users.FirstOrDefault(u => u.Name.ToUpper() == name.ToUpper() || u.Email.ToUpper() == name.ToUpper());
 
         public IEnumerable<User> GetUserByToken(IEnumerable<string> tokens) => _users.FindAll(u => tokens.Contains(u.UserToken));
 

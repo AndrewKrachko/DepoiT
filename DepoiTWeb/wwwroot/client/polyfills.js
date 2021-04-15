@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Work\Programming\DepoiT\DepoiTWeb\client\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Work\Programming\DepoiT\DepoiTWeb\client\src\polyfills.ts */"hN/g");
 
 
 /***/ }),

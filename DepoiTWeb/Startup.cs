@@ -70,6 +70,18 @@ namespace DepoiTWeb
 
             app.UseHttpsRedirection();
 
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                // Add Error Page
+                app.UseExceptionHandler("/error");
+            }
+
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthentication();

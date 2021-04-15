@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <form (submit)="onLogin()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input name="username" type="text" class="form-control" #username="ngModel" [(ngModel)]="creds.name" required/>
+                <div class="text-danger" *ngIf="username.touched && username.invalid && username.errors.required" >Required</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" class="form-control" #password="ngModel" [(ngModel)]="creds.password" required />
+                <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors.required">Required</div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input name="rememberMeFlag" type="checkbox" class="form-check-input" />
+                    <label for="rememberMeFlag" class="form-check-label">Remember Me</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-success" [disabled]="username.invalid || password.invalid"/>
+            </div>
+        </form>
+        {{ creds | json }}
+    </div>
+</div>

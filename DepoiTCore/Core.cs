@@ -17,12 +17,12 @@ namespace DepoiTCore
             _logger = Configurator.GetLogger();
         }
 
-        public bool AddStoragesToDepot(int depotId, IEnumerable<Storage> storages)
+        public bool AddStoragesToDepot(int depotId, string userToken, IEnumerable<Storage> storages)
         {
             return _repository.DepotRepository.AddStoragesToDepot(depotId, storages, out var depot);
         }
 
-        public bool DropDepot(int id)
+        public bool DropDepot(int id, string userToken)
         {
             return _repository.DepotRepository.DropDepot(id);
         }
@@ -42,7 +42,7 @@ namespace DepoiTCore
             return _repository.UserRepository.DropUser(userId);
         }
 
-        public bool GetDepot(int id, out Depot depot)
+        public bool GetDepot(int id, string userToken, out Depot depot)
         {
             if (_repository.DepotRepository.GetDepots(new[] { id }, out var depots))
             {
@@ -139,12 +139,12 @@ namespace DepoiTCore
             return _repository.UserRepository.GetUserByName(value, out user);
         }
 
-        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, int sourceDepot, int recepientDepot)
+        public bool MoveStoragesBetweenDepots(IEnumerable<int> storageIds, string userToken, int sourceDepot, int recepientDepot)
         {
             return _repository.DepotRepository.MoveStoragesBetweenDepots(storageIds, sourceDepot, recepientDepot);
         }
 
-        public bool RemoveStoragesFromDepot(int depotId, IEnumerable<Storage> storages)
+        public bool RemoveStoragesFromDepot(int depotId, string userToken, IEnumerable<Storage> storages)
         {
             return _repository.DepotRepository.RemoveStoragesFromDepot(depotId, storages, out var depot);
         }
@@ -202,10 +202,8 @@ namespace DepoiTCore
             return _repository.UserRepository.SetUser(user, out var createdUser);
         }
 
-        public bool UpdateDepot(Depot depot, out Depot createdDepot)
+        public bool UpdateDepot(Depot depot, string userToken, out Depot createdDepot)
         {
-            var userToken = depot.Owner.UserToken;
-
             if (_repository.UserRepository.GetUserByToken(userToken, out var user))
             {
                 depot.Owner = user;
