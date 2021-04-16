@@ -11,12 +11,14 @@ import Dashboard from './services/dashboard.service';
 import { AuthActivator } from './services/authActivator';
 import { FormsModule } from '@angular/forms';
 import router from './router/router';
+import { DepotListView } from './views/depotListView';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardPage,
-        LoginPage
+        LoginPage,
+        DepotListView,
     ],
     imports: [
         BrowserModule,

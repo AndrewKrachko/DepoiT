@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -91,9 +92,9 @@ namespace DepoiTWeb.Controllers
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
                     var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(_config["Token:Issuer"], _config["Token:Audience"], claims, signingCredentials: credentials, expires: DateTime.Now.AddHours(1));
+                    var token = new JwtSecurityToken(_config["Token:Issuer"], _config["Token:Audience"], claims, signingCredentials: credentials, expires: DateTime.Now.AddMinutes(4));
 
-                    return Created(string.Empty, new 
+                    return Created(string.Empty, new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo
@@ -102,6 +103,40 @@ namespace DepoiTWeb.Controllers
             }
 
             return BadRequest($"Check User name and password and try again");
+        }
+
+        [AllowAnonymous]
+        [Route("istokenvalid")]
+        public IActionResult IsTokenValid()
+        {
+            try
+            {
+                if (Request.Headers.TryGetValue("Authorization", out var claimToken))
+                {
+                    var tokenString = claimToken[0].Substring(claimToken[0].IndexOf(' ') + 1);
+
+                    var jwtHandler = new JwtSecurityTokenHandler().ValidateToken(
+                        tokenString,
+                         new TokenValidationParameters()
+                         {
+                             ValidIssuer = _config["Token:Issuer"],
+                             ValidAudience = _config["Token:Audience"],
+                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]))
+                         },
+                         out var securityToken);
+
+                    if (securityToken.ValidTo > DateTime.UtcNow)
+                    {
+                        return Ok(true);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+
+            return Ok(false);
         }
 
     }

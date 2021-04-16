@@ -1,6 +1,7 @@
 ﻿import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 import Dashboard from "./dashboard.service";
 
 @Injectable()
@@ -15,14 +16,15 @@ export class AuthActivator implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot):
-        boolean {
+        Observable<boolean> {
 
-        if (this.dashboard.loginRequred) {
-            this.router.navigate(["login"]);
-            return false;
-        } else {
-            return true;
-        }
+        return this.dashboard.loginRequred.pipe(
+            tap(isAuth => {
+                if (!isAuth) {
+                    this.router.navigate(["login"]);
+                }
+            })
+        );
     }
 
 }

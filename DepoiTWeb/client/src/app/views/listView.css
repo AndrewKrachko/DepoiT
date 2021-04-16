@@ -1,0 +1,12 @@
+﻿.product-image {
+    border: 1px #ddd solid;
+    box-shadow: rgba(0,0,0,.4) 2px 2px;
+    margin: 2px;
+}
+
+.depot-props {
+    border: 1px #808080 solid;
+    background-color: ivory;
+    font-size: .9rem;
+    width: max-content;
+}
