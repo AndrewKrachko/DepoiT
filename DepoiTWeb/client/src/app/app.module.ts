@@ -12,6 +12,7 @@ import { AuthActivator } from './services/authActivator';
 import { FormsModule } from '@angular/forms';
 import router from './router/router';
 import { DepotListView } from './views/depotListView';
+import { StorageListView } from './views/storageListView';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { DepotListView } from './views/depotListView';
         DashboardPage,
         LoginPage,
         DepotListView,
+        StorageListView,
     ],
     imports: [
         BrowserModule,
