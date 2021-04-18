@@ -92,7 +92,7 @@ namespace DepoiTWeb.Controllers
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
                     var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(_config["Token:Issuer"], _config["Token:Audience"], claims, signingCredentials: credentials, expires: DateTime.Now.AddMinutes(4));
+                    var token = new JwtSecurityToken(_config["Token:Issuer"], _config["Token:Audience"], claims, signingCredentials: credentials, expires: DateTime.Now.AddMinutes(30));
 
                     return Created(string.Empty, new
                     {

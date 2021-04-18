@@ -1,0 +1,10 @@
+﻿<div class="col">
+    <div class="row">
+        <div class="col-sm align-content-end" *ngIf="dashboard.user!==undefined && dashboard.user.name!==undefined" (click)="changeMenuVisibility()">
+            {{ dashboard.user.name }}
+        </div>
+        <div class="col-sm" name="menu" ng-show="userMenuShow">
+            <a class="nav-link" (click)="dashboard.logout()" href="/dashboard">Log Out</a>
+        </div>
+    </div>
+</div>

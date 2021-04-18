@@ -5,16 +5,18 @@ import { LoginRequest, LoginResult } from "../shared/LoginResults";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { AppStorage } from "../shared/AppStorage";
+import { AppUser } from "../shared/AppUser";
 
 
 @Injectable()
 export default class Dashboard {
+    public appName: string = "DepoiT";
+    public user: AppUser;
+
     public depots: AppDepot[] = [];
     public activeDepots: number;
     public storages: AppStorage[] = [];
 
-    public token: string = "";
-    public tokenExpDate: Date = new Date();
     errorMessage = "";
 
     constructor(private http: HttpClient) {
@@ -22,20 +24,21 @@ export default class Dashboard {
     }
 
     get loginRequred(): Observable<boolean> {
-        const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem("id_token")}`);
-        return this.http.post<boolean>("/api/authenticate/istokenvalid", null, { headers: headers });
+        return this.http.post<boolean>("/api/authenticate/istokenvalid", null, this.getHeaders());
     }
 
     login(creds: LoginRequest) {
         return this.http.post<LoginResult>("/api/authenticate/createtoken", creds).pipe(map(data => {
-            this.token = data.token;
-            this.tokenExpDate = data.tokenExpDate;
-            this.setSession();
+            this.setSession(data.token);
         }));
     }
 
-    private setSession() {
-        localStorage.setItem('id_token', this.token);
+    getUser() {
+        return this.http.post<AppUser>("/api/user/getme", "", this.getHeaders()).pipe(map(data => this.user = data));
+    }
+
+    private setSession(token: string) {
+        localStorage.setItem('id_token', token);
     }
 
     logout() {
@@ -47,8 +50,7 @@ export default class Dashboard {
     }
 
     getDepots() {
-        const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem("id_token")}`);
-        return this.http.post<AppDepot[]>("/api/depot/getbyparent", "", { headers: headers }).pipe(map(data => this.depots = data));
+        return this.http.post<AppDepot[]>("/api/depot/getbyparent", "", this.getHeaders()).pipe(map(data => this.depots = data));
     }
 
     setActiveDepot(depotId: number) {
@@ -57,13 +59,11 @@ export default class Dashboard {
     }
 
     getStorages() {
-        const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem("id_token")}`);
-        return this.http.post<AppStorage[]>("/api/storage/getbyparent", this.activeDepots, { headers: headers }).pipe(map(data => this.storages = data));
+        return this.http.post<AppStorage[]>("/api/storage/getbyparent", this.activeDepots, this.getHeaders()).pipe(map(data => this.storages = data));
     }
 
     getItems(storageId: number) {
-        const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem("id_token")}`);
-        return this.http.post<AppStorage[]>("/api/storage/getbyparent", this.activeDepots, { headers: headers }).pipe(map(data => this.storages = data));
+        return this.http.post<AppStorage[]>("/api/storage/getbyparent", this.activeDepots, this.getHeaders()).pipe(map(data => this.storages = data));
     }
 
 }

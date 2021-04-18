@@ -1,6 +1,6 @@
 ﻿<div class="col">
     <div class="row" *ngFor="let p of dashboard.storages" (click)="dashboard.getItems(p.id)">
-        <ul class="storage-props list-unstyled">
+        <ul class="col-12 storage-props list-unstyled">
             <li><strong>Name</strong>: {{ p.name }}{{ p.nameSplitter }}{{ p.nameB }}{{ p.nameSplitter }}{{ p.nameC }}</li>
         </ul>
         <item-list></item-list>

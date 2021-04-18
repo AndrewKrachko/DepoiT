@@ -1,0 +1,18 @@
+﻿<header class="container-fluid">
+    <nav class=" row navbar navbar-dark bg-dark navbar-expand-md">
+        <h1 class="col navbar-brand"><i class="fas fa-paint-brush"></i>{{dashboard.appName}}</h1>
+        <button class="col navbar-toggler" data-toggle="collapse" data-target="#theMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="theMenu" class="col navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Wizard" asp-action="Index">Wizard</a></li>
+                <li class="nav-item"><a class="nav-link" href="swagger/index.html">Swagger</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <user-pannel></user-pannel>
+        </div>
+    </nav>
+</header>

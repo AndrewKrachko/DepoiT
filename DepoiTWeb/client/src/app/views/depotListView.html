@@ -1,6 +1,6 @@
 ﻿<div class="col">
     <div class="row" *ngFor="let p of dashboard.depots" (click)="dashboard.setActiveDepot(p.id)">
-        <ul class="depot-props list-unstyled">
+        <ul class="col-12 depot-props list-unstyled">
             <li><strong>Name</strong>: {{ p.name }}</li>
             <li><strong>Address</strong>: {{ p.address }}</li>
         </ul>

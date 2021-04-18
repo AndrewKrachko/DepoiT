@@ -13,14 +13,20 @@ import { FormsModule } from '@angular/forms';
 import router from './router/router';
 import { DepotListView } from './views/depotListView';
 import { StorageListView } from './views/storageListView';
+import { UserPannelView } from './views/userPannelView';
+import { FooterView } from './views/footerView';
+import { HeaderView } from './views/headerView';
 
 @NgModule({
     declarations: [
         AppComponent,
+        HeaderView,
+        FooterView,
         DashboardPage,
         LoginPage,
         DepotListView,
         StorageListView,
+        UserPannelView,
     ],
     imports: [
         BrowserModule,

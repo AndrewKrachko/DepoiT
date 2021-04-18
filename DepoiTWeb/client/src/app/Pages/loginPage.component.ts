@@ -1,4 +1,5 @@
-﻿import { error } from "@angular/compiler/src/util";
+﻿import { style } from "@angular/animations";
+import { error } from "@angular/compiler/src/util";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import Dashboard from "../services/dashboard.service";
@@ -6,7 +7,8 @@ import { LoginRequest } from "../shared/LoginResults";
 
 @Component({
     selector: "login-page",
-    templateUrl: "loginPage.component.html"
+    templateUrl: "loginPage.component.html",
+    styleUrls: ["./loginPage.css",],
 })
 export class LoginPage {
     constructor(

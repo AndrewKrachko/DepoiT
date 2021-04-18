@@ -12,8 +12,4 @@ export class StorageListView /*implements OnInit*/ {
 
     }
 
-    //ngOnInit(): void {
-    //    this.dashboard.getStorages().subscribe();
-    //}
-
 }
