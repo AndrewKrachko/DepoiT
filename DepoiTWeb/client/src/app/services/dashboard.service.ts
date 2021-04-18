@@ -6,6 +6,7 @@ import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { AppStorage } from "../shared/AppStorage";
 import { AppUser } from "../shared/AppUser";
+import { AppItem } from "../shared/AppItem";
 
 
 @Injectable()
@@ -63,7 +64,7 @@ export default class Dashboard {
     }
 
     getItems(storageId: number) {
-        return this.http.post<AppStorage[]>("/api/storage/getbyparent", this.activeDepots, this.getHeaders()).pipe(map(data => this.storages = data));
+        return this.http.post<AppItem[]>("/api/item/getbyparent", storageId, this.getHeaders());
     }
 
 }

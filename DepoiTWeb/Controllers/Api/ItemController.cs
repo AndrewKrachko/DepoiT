@@ -33,7 +33,7 @@ namespace DepoiTWeb.Controllers
 
         [Route("getbyparent")]
         [HttpPost]
-        public IActionResult GetByUser([FromBody] int storageId)
+        public IActionResult GetByStorage([FromBody] int storageId)
         {
             if (_core.GetItemsByStorage(storageId, out var items))
             {

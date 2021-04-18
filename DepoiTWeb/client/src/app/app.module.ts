@@ -16,6 +16,7 @@ import { StorageListView } from './views/storageListView';
 import { UserPannelView } from './views/userPannelView';
 import { FooterView } from './views/footerView';
 import { HeaderView } from './views/headerView';
+import { ItemListView } from './views/itemListView';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { HeaderView } from './views/headerView';
         LoginPage,
         DepotListView,
         StorageListView,
+        ItemListView,
         UserPannelView,
     ],
     imports: [
