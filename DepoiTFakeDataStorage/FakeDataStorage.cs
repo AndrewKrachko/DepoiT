@@ -101,20 +101,18 @@ namespace DepoiTFakeDataStorage
                 new Depot() {Id = 3, Name = "Empty depot", Owner = _users[1], ObjectToken=@"lB/}{ZZos1obR`'/?/'O!c-oA" },
             };
 
+            UserDataStorage = new UserDataStorage(this, _users, _depots);
             DepotDataStorage = new DepotDataStorage(this, _depots, _storages);
             StorageDataStorage = new StorageDataStorage(this, _depots, _storages, _items);
             ItemDataStorage = new ItemDataStorage(this, _storages, _items, _patterns);
             PatternDataStorage = new PatternDataStorage(_patterns, _items);
         }
 
+        public IUserDataStorage UserDataStorage{ get; set; }
         public IDepotDataStorage DepotDataStorage { get; set; }
         public IPatternDataStorage PatternDataStorage { get; set; }
         public IStorageDataStorage StorageDataStorage { get; set; }
         public IItemDataStorage ItemDataStorage { get; set; }
-
-        public User GetUserByNameOrByEmail(string name) => _users.FirstOrDefault(u => u.Name.ToUpper() == name.ToUpper() || u.Email.ToUpper() == name.ToUpper());
-
-        public IEnumerable<User> GetUserByToken(IEnumerable<string> tokens) => _users.FindAll(u => tokens.Contains(u.UserToken));
 
         public string GenerateToken(IEnumerable<DepoiTObject> collection)
         {
@@ -125,43 +123,6 @@ namespace DepoiTFakeDataStorage
             }
             while (collection.Any(d => d.ObjectToken == itemToken));
             return itemToken;
-        }
-
-        public IEnumerable<string> GetUserTokens(IEnumerable<int> id) => _users.FindAll(u => id.Contains(u.Id)).Select(u => u.ObjectToken);
-
-        public string SetUser(User user)
-        {
-            string itemToken = GenerateToken(_users);
-
-            user.Id = (_depots.Count == 0 ? 0 : _depots.LastOrDefault().Id) + 1;
-            user.ObjectToken = itemToken;
-
-            _users.Add((User)user);
-
-            return itemToken;
-        }
-
-        public string UpdateUser(User user)
-        {
-            string itemToken = GenerateToken(_users);
-
-            var databaseItem = _users.FirstOrDefault(u => u.Id == user.Id);
-
-            if (databaseItem != null)
-            {
-                if (databaseItem.Name != user.Name) databaseItem.Name = user.Name;
-                if (databaseItem.Email != user.Email) databaseItem.Email = user.Email;
-                if (databaseItem.Avatar != user.Avatar) databaseItem.Avatar = user.Avatar;
-                if (databaseItem.PasswordHash != user.PasswordHash) databaseItem.PasswordHash = user.PasswordHash;
-                databaseItem.ObjectToken = itemToken;
-            }
-
-            return itemToken;
-        }
-
-        public void DropUser(int id)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

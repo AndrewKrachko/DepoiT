@@ -20,7 +20,7 @@ namespace DepoiTRepository
         {
             _dataStorage = dataStorage;
 
-            UserRepository = new UserRepository(_dataStorage);
+            UserRepository = new UserRepository(_dataStorage.UserDataStorage);
             DepotRepository = new DepotRepository(_dataStorage.DepotDataStorage);
             StorageRepository = new StorageRepository(_dataStorage.StorageDataStorage);
             ItemRepository = new ItemRepository(_dataStorage.ItemDataStorage);
