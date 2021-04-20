@@ -5,8 +5,19 @@ using System.Linq;
 
 namespace DepoiTFakeDataStorage
 {
-    public partial class FakeDataStorage
+    public class DepotDataStorage : IDepotDataStorage
     {
+        private readonly FakeDataStorage _dataStorage;
+        private List<Depot> _depots;
+        private readonly List<Storage> _storages;
+
+        public DepotDataStorage(FakeDataStorage dataStorage, List<Depot> depots, List<Storage> storages)
+        {
+            _depots = depots;
+            _storages = storages;
+            _dataStorage = dataStorage;
+        }
+
         public string AddStogaresToDepot(int depotId, IEnumerable<Storage> storages)
         {
             var depotToken = string.Empty;
@@ -17,7 +28,7 @@ namespace DepoiTFakeDataStorage
                 var depotStorages = depot.Storages.ToList();
                 depotStorages.AddRange(storages);
                 depot.Storages = depotStorages;
-                depotToken = GenerateToken(_depots);
+                depotToken = _dataStorage.GenerateToken(_depots);
                 depot.ObjectToken = depotToken;
             }
 
@@ -45,14 +56,14 @@ namespace DepoiTFakeDataStorage
                 var recipientDepotStorages = depotRecepient.Storages.ToList();
                 recipientDepotStorages.AddRange(storages);
                 depotRecepient.Storages = recipientDepotStorages;
-                recepientDepotToken = GenerateToken(_depots);
+                recepientDepotToken = _dataStorage.GenerateToken(_depots);
                 depotRecepient.ObjectToken = recepientDepotToken;
 
                 var sourceDepotStorages = depotRecepient.Storages.ToList();
                 sourceDepotStorages.AddRange(storages);
                 depotRecepient.Storages = sourceDepotStorages;
                 depotRecepient.Storages.ToList().RemoveAll(s => storages.Contains(s));
-                sourceDepotToken = GenerateToken(_depots);
+                sourceDepotToken = _dataStorage.GenerateToken(_depots);
                 depotSource.ObjectToken = recepientDepotToken;
             }
 
@@ -69,7 +80,7 @@ namespace DepoiTFakeDataStorage
                 var depotStorages = depot.Storages.ToList();
                 depotStorages.RemoveAll(s => ids.Contains(s.Id));
                 depot.Storages = depotStorages;
-                depotToken = GenerateToken(_depots);
+                depotToken = _dataStorage.GenerateToken(_depots);
                 depot.ObjectToken = depotToken;
             }
 
@@ -78,7 +89,7 @@ namespace DepoiTFakeDataStorage
 
         public string SetDepot(Depot depot)
         {
-            string itemToken = GenerateToken(_depots);
+            string itemToken = _dataStorage.GenerateToken(_depots);
 
             depot.Id = (_depots.Count == 0 ? 0 : _depots.LastOrDefault().Id) + 1;
             depot.ObjectToken = itemToken;
@@ -90,7 +101,7 @@ namespace DepoiTFakeDataStorage
 
         public string UpdateDepot(Depot depot)
         {
-            string itemToken = GenerateToken(_depots);
+            string itemToken = _dataStorage.GenerateToken(_depots);
 
             var databaseItem = _depots.FirstOrDefault(d => d.Id == depot.Id);
 

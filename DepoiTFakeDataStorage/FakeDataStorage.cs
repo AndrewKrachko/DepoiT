@@ -101,16 +101,18 @@ namespace DepoiTFakeDataStorage
                 new Depot() {Id = 3, Name = "Empty depot", Owner = _users[1], ObjectToken=@"lB/}{ZZos1obR`'/?/'O!c-oA" },
             };
 
+            DepotDataStorage = new DepotDataStorage(this, _depots, _storages);
             PatternDataStorage = new PatternDataStorage(_patterns, _items);
         }
 
+        public IDepotDataStorage DepotDataStorage { get; set; }
         public IPatternDataStorage PatternDataStorage { get; set; }
 
         public User GetUserByNameOrByEmail(string name) => _users.FirstOrDefault(u => u.Name.ToUpper() == name.ToUpper() || u.Email.ToUpper() == name.ToUpper());
 
         public IEnumerable<User> GetUserByToken(IEnumerable<string> tokens) => _users.FindAll(u => tokens.Contains(u.UserToken));
 
-        private string GenerateToken(IEnumerable<DepoiTObject> collection)
+        public string GenerateToken(IEnumerable<DepoiTObject> collection)
         {
             string itemToken;
             do
