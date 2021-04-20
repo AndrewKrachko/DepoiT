@@ -7,7 +7,7 @@ namespace DepoiTItems
     {
         public List<double> ValueSet { get; set; }
 
-        public NumberSetPattern(): base(FieldTypeEnum.NumberFromSet)
+        public NumberSetPattern() : base(FieldTypeEnum.NumberFromSet)
         {
 
         }

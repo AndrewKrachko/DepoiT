@@ -1,9 +1,7 @@
 ﻿<div class="col">
-    <div class="row" *ngFor="let p of dashboard.storages" (click)="changeItemsVisibility(p.id)">
-        <ul class="col-12 storage-props list-unstyled">
-            <li><strong>Name</strong>: {{ p.name }}{{ p.nameSplitter }}{{ p.nameB }}{{ p.nameSplitter }}{{ p.nameC }}</li>
-        </ul>
-        <div [id]="p.id" class="row" hidden>
+    <div class="row storage-item" *ngFor="let p of dashboard.storages">
+        <label class="col-12 storage-props list-unstyled" (click)="changeItemsVisibility(p.id)"><strong>Name</strong>: {{ p.name }}{{ p.nameSplitter }}{{ p.nameB }}{{ p.nameSplitter }}{{ p.nameC }}</label>
+        <div [id]="p.id" class="col-12" hidden>
             <item-list [storageId]="p.id"></item-list>
         </div>
     </div>

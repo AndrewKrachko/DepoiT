@@ -1,6 +1,7 @@
-﻿<h3>{{ items.length }}</h3>
-<div class="col" *ngFor="let p of items">
-    <div class="row">
-        Name: {{p.name}}
+﻿<label class="col-12" *ngIf="items !== undefined">Item categories: {{ items.length }}</label>
+<div *ngFor="let p of items">
+    <div class="col-12">
+        <div (click)="changeItemVisibility(p.id)">Name: {{p.name}}</div>
+        <the-item [itemId]="getTheItemId(p.id)" class="row"></the-item>
     </div>
 </div>

@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import Dashboard from "../services/dashboard.service";
 import { ItemListView } from "./itemListView";
+import { VisibilityStatus } from "./VisibilityStatus";
 
 @Component({
     selector: "storage-list",
@@ -9,7 +10,7 @@ import { ItemListView } from "./itemListView";
 })
 export class StorageListView {
 
-    public showItems: VisibilityState[] = [];
+    public showItems: VisibilityStatus[] = [];
 
     constructor(public dashboard: Dashboard) {
 
@@ -29,7 +30,3 @@ export class StorageListView {
 
 }
 
-type VisibilityState = {
-    name: string;
-    show: boolean;
-};

@@ -50,17 +50,18 @@ namespace DepoiTFakeDataStorage
             };
 
             _values = new List<Field>()
-            { 
-                new StringField(){ Id=0, FieldPattern = _fieldPatterns[0], Value="Full metall jacket shell", SerializedValue = string.Empty, ObjectToken = @",wAIrVL/^${[I9L:C;Fhzb/4l" }, 
-                new NumberField(){ Id=1, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"h@a$z""TiPW-~{dG(GB5#:|d0C" }, 
-                new StringField(){ Id=2, FieldPattern = _fieldPatterns[2], Value="Still", SerializedValue = string.Empty, ObjectToken = @"z>(i3Hi.\*7i+b#Gqx`?:FU}`" }, 
-                new StringField(){ Id=3, FieldPattern = _fieldPatterns[0], Value="Some Diode", SerializedValue = string.Empty, ObjectToken = @"SAx2RkZQ`!bM~=0Bq@[1><^2Z" }, 
-                new NumberField(){ Id=4, FieldPattern = _fieldPatterns[1], Value=1000, SerializedValue = string.Empty, ObjectToken = @"H$%o)Th)*^(oz+>\8Ja@xr[Q{" }, 
-                new NumberField(){ Id=5, FieldPattern = _fieldPatterns[3], Value=2.25, SerializedValue = string.Empty, ObjectToken = @"G'ymB8afV+gVaWLxEu^(Rv5>T" }, 
-                new NumberWithSingleToleranceField(){ Id=6, FieldPattern = _fieldPatterns[4], Value=100, Tolerance=7, SerializedValue = string.Empty, ObjectToken = @"'q{qaTHRraMm;fGE)D!U'Vr6F" }, 
-                new NumberField(){ Id=7, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"IS4gNP}fK.WK)I1Z2""K""_3NK7" }, 
-                new NumberField(){ Id=8, FieldPattern = _fieldPatterns[3], Value=1.25, SerializedValue = string.Empty, ObjectToken = @"#h|6;Jmdf!{]sjkG}Jg|ryDdD" }, 
-                new NumberWithDifferentialToleranceField(){ Id=9, FieldPattern = _fieldPatterns[5], Value=0.2, ToleranceMin=-0.02, ToleranceMax=0.01, SerializedValue = string.Empty, ObjectToken = @"x(c6#6%hQKg""P1bheBH5|=7^Y" }, 
+            {
+                new StringField(){ Id=0, FieldPattern = _fieldPatterns[0], ValueString="Full metall jacket shell", SerializedValue = string.Empty, ObjectToken = @",wAIrVL/^${[I9L:C;Fhzb/4l" },
+                new NumberField(){ Id=1, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"h@a$z""TiPW-~{dG(GB5#:|d0C" },
+                new StringField(){ Id=2, FieldPattern = _fieldPatterns[2], ValueString="Still", SerializedValue = string.Empty, ObjectToken = @"z>(i3Hi.\*7i+b#Gqx`?:FU}`" },
+                new StringField(){ Id=3, FieldPattern = _fieldPatterns[0], ValueString="Some Diode", SerializedValue = string.Empty, ObjectToken = @"SAx2RkZQ`!bM~=0Bq@[1><^2Z" },
+                new NumberField(){ Id=4, FieldPattern = _fieldPatterns[1], Value=1000, SerializedValue = string.Empty, ObjectToken = @"H$%o)Th)*^(oz+>\8Ja@xr[Q{" },
+                new NumberField(){ Id=5, FieldPattern = _fieldPatterns[3], Value=2.25, SerializedValue = string.Empty, ObjectToken = @"G'ymB8afV+gVaWLxEu^(Rv5>T" },
+                new NumberWithSingleToleranceField(){ Id=6, FieldPattern = _fieldPatterns[4], Value=100, Tolerance=7, SerializedValue = string.Empty, ObjectToken = @"'q{qaTHRraMm;fGE)D!U'Vr6F" },
+                new StringField(){ Id=7, FieldPattern = _fieldPatterns[0], ValueString="Some Tranzistor", SerializedValue = string.Empty, ObjectToken = @"`&[^C8vxJC,+jA_ZT+l/a^+{|" },
+                new NumberField(){ Id=8, FieldPattern = _fieldPatterns[1], Value=10, SerializedValue = string.Empty, ObjectToken = @"IS4gNP}fK.WK)I1Z2""K""_3NK7" },
+                new NumberField(){ Id=9, FieldPattern = _fieldPatterns[3], Value=1.25, SerializedValue = string.Empty, ObjectToken = @"#h|6;Jmdf!{]sjkG}Jg|ryDdD" },
+                new NumberWithDifferentialToleranceField(){ Id=10, FieldPattern = _fieldPatterns[5], Value=0.2, ToleranceMin=-0.02, ToleranceMax=0.01, SerializedValue = string.Empty, ObjectToken = @"x(c6#6%hQKg""P1bheBH5|=7^Y" },
             };
 
             _patterns = new List<Pattern>()
@@ -72,9 +73,9 @@ namespace DepoiTFakeDataStorage
 
             _items = new List<Item>()
             {
-                new Item() { Id = 0, Name = "Gun shell", Pattern = _patterns[0], ObjectToken = @"VOO_LUM21?9Oe3:4&%'N.0`aY" },
-                new Item() { Id = 1, Name = "KT-3102", Pattern = _patterns[1], ObjectToken = @"R<sUO\vyHM|-5""gYAlRb\v`%`" },
-                new Item() { Id = 2, Name = "IN-4001", Pattern = _patterns[2], ObjectToken = @"?l5HfFmm'y9X\`bAU>e='o$>t" },
+                new Item() { Id = 0, Name = "Gun shell", Pattern = _patterns[0], Fields = new List<Field>() { _values[0], _values[1], _values[2], }, ObjectToken = @"VOO_LUM21?9Oe3:4&%'N.0`aY" },
+                new Item() { Id = 1, Name = "KT-3102", Pattern = _patterns[1], Fields = new List<Field>() { _values[3], _values[4], _values[5], _values[6], }, ObjectToken = @"R<sUO\vyHM|-5""gYAlRb\v`%`" },
+                new Item() { Id = 2, Name = "IN-4001", Pattern = _patterns[2], Fields = new List<Field>() { _values[7], _values[8], _values[9], _values[10], }, ObjectToken = @"?l5HfFmm'y9X\`bAU>e='o$>t" },
             };
 
             _storages = new List<Storage>()

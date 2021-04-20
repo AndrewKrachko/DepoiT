@@ -17,6 +17,8 @@ import { UserPannelView } from './views/userPannelView';
 import { FooterView } from './views/footerView';
 import { HeaderView } from './views/headerView';
 import { ItemListView } from './views/itemListView';
+import { ItemView } from './views/itemView';
+import { ParameterView } from './views/parameterView';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import { ItemListView } from './views/itemListView';
         DepotListView,
         StorageListView,
         ItemListView,
+        ItemView,
+        ParameterView,
         UserPannelView,
     ],
     imports: [

@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTCache", "DepoiTItemCh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepiTItemsUnitTests", "DepiTItemsUnitTests\DepiTItemsUnitTests.csproj", "{76DC7D97-0DBF-41F7-BF21-199522B4A637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepoiTEFDataStorage", "DepoiTEFDataStorage\DepoiTEFDataStorage.csproj", "{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepoiTEFDataStorage", "DepoiTEFDataStorage\DepoiTEFDataStorage.csproj", "{EA8E5D49-ED06-4E53-A7C2-9C6C91D7183E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

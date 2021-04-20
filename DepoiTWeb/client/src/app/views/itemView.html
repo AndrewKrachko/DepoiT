@@ -1,0 +1,9 @@
+﻿<div class="item-parameters-list col-12" [id]="itemId" *ngIf="item !== undefined" hidden>
+    Parameters:
+    <div class="row col-12" *ngFor="let p of item.pattern.fieldPatterns">
+        <div [id]="getTheParameterId(p.id)" class="row col-11">
+            <the-parameter [id]="p.id"></the-parameter>
+        </div>
+    </div>
+</div>
+

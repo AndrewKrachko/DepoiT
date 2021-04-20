@@ -67,4 +67,8 @@ export default class Dashboard {
         return this.http.post<AppItem[]>("/api/item/getbyparent", storageId, this.getHeaders());
     }
 
+    getItem(itemId: number) {
+        return this.http.post<AppItem>("/api/item/get", itemId, this.getHeaders());
+    }
+
 }
