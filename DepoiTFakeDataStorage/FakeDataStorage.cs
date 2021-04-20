@@ -103,12 +103,14 @@ namespace DepoiTFakeDataStorage
 
             DepotDataStorage = new DepotDataStorage(this, _depots, _storages);
             StorageDataStorage = new StorageDataStorage(this, _depots, _storages, _items);
+            ItemDataStorage = new ItemDataStorage(this, _storages, _items, _patterns);
             PatternDataStorage = new PatternDataStorage(_patterns, _items);
         }
 
         public IDepotDataStorage DepotDataStorage { get; set; }
         public IPatternDataStorage PatternDataStorage { get; set; }
         public IStorageDataStorage StorageDataStorage { get; set; }
+        public IItemDataStorage ItemDataStorage { get; set; }
 
         public User GetUserByNameOrByEmail(string name) => _users.FirstOrDefault(u => u.Name.ToUpper() == name.ToUpper() || u.Email.ToUpper() == name.ToUpper());
 

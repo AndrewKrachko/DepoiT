@@ -5,15 +5,28 @@ using System.Linq;
 
 namespace DepoiTFakeDataStorage
 {
-    public partial class FakeDataStorage
+    public class ItemDataStorage: IItemDataStorage
     {
+        private FakeDataStorage _dataStorage;
+        private List<Storage> _storages;
+        private List<Item> _items;
+        private List<Pattern> _patterns;
+
+        public ItemDataStorage(FakeDataStorage fakeDataStorage, List<Storage> storages, List<Item> items, List<Pattern> patterns)
+        {
+            _dataStorage = fakeDataStorage;
+            _storages = storages;
+            _items = items;
+            _patterns = patterns;
+        }
+
         public IEnumerable<string> GetItemTokens(IEnumerable<int> id) => _items.FindAll(s => id.Contains(s.Id)).Select(s => s.ObjectToken);
         public IEnumerable<string> GetItemTokensByStorage(IEnumerable<int> storageId) => _storages?.Where(d => storageId.Contains(d.Id) && d.Items != null && d.Items.Count() != 0)?.Select(d => d.Items).SelectMany(s => s?.Select(s => s?.ObjectToken));
         public IEnumerable<Item> GetItems(IEnumerable<string> tokens) => _items.FindAll(s => tokens.Contains(s.ObjectToken));
 
         public string SetItem(Item item)
         {
-            string itemToken = GenerateToken(_items);
+            string itemToken = _dataStorage.GenerateToken(_items);
 
             item.Id = (_items.Count == 0 ? 0 : _items.LastOrDefault().Id) + 1;
             item.ObjectToken = itemToken;
@@ -25,7 +38,7 @@ namespace DepoiTFakeDataStorage
 
         public string UpdateItem(Item item)
         {
-            string itemToken = GenerateToken(_items);
+            string itemToken = _dataStorage.GenerateToken(_items);
 
             var databaseItem = _items.FirstOrDefault(d => d.Id == item.Id);
 
