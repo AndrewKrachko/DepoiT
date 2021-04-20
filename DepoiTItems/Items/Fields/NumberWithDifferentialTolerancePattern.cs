@@ -7,7 +7,7 @@ namespace DepoiTItems
         public double ToleranceMin { get; set; }
         public double ToleranceMax { get; set; }
 
-        public NumberWithDifferentialTolerancePattern(): base (FieldTypeEnum.NumberWithDifferentialTolerance)
+        public NumberWithDifferentialTolerancePattern() : base(FieldTypeEnum.NumberWithDifferentialTolerance)
         {
 
         }

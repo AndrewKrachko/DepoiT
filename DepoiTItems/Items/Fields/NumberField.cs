@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace DepoiTItems
 {
@@ -18,7 +17,7 @@ namespace DepoiTItems
         {
             return obj is NumberField field &&
                    base.Equals(obj) &&
-                   Value == field.Value &&                  
+                   Value == field.Value &&
                    EqualityComparer<FieldPattern>.Default.Equals(FieldPattern, field.FieldPattern);
         }
 

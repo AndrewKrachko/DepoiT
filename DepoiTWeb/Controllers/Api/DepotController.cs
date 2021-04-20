@@ -24,7 +24,7 @@ namespace DepoiTWeb.Controllers
         [HttpPost]
         public IActionResult Get([FromBody] int id)
         {
-            if(!_core.GetUserByNameOrEmail(User.Identity.Name, out var user))
+            if (!_core.GetUserByNameOrEmail(User.Identity.Name, out var user))
             {
                 return BadRequest($"Missing user");
             }

@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace DepoiTItems
 {
@@ -7,7 +6,7 @@ namespace DepoiTItems
     {
         [JsonIgnore]
         public FieldPattern FieldPattern { get; set; }
-        
-        public abstract bool Validate();        
+
+        public abstract bool Validate();
     }
 }

@@ -46,7 +46,7 @@ namespace DepoiTRepository
         {
             try
             {
-                user = _dataStorage.GetUserByToken(new []{userToken}).FirstOrDefault();
+                user = _dataStorage.GetUserByToken(new[] { userToken }).FirstOrDefault();
 
                 if (user != null)
                 {

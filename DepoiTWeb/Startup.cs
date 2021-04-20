@@ -30,7 +30,7 @@ namespace DepoiTWeb
             services.AddTransient<IUserStore<User>, DepoiTUserStore>();
             services.AddTransient<IRoleStore<UserRole>, DepoiTRoleStore>();
 
-            services.AddAuthentication().AddCookie().AddJwtBearer(cfg => 
+            services.AddAuthentication().AddCookie().AddJwtBearer(cfg =>
             {
                 cfg.TokenValidationParameters = new TokenValidationParameters()
                 {

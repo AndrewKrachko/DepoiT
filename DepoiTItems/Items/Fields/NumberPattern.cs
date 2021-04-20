@@ -6,12 +6,12 @@ namespace DepoiTItems
     {
         public double DefaultValue { get; set; }
 
-        public NumberPattern(): base(FieldTypeEnum.Number)
+        public NumberPattern() : base(FieldTypeEnum.Number)
         {
 
         }
 
-        protected NumberPattern(FieldTypeEnum fieldTypeEnum): base(fieldTypeEnum)
+        protected NumberPattern(FieldTypeEnum fieldTypeEnum) : base(fieldTypeEnum)
         {
 
         }

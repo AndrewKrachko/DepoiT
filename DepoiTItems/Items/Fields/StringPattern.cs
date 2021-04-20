@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DepoiTItems
 {
@@ -13,7 +11,7 @@ namespace DepoiTItems
 
         }
 
-        protected StringPattern(FieldTypeEnum fieldTypeEnum): base(fieldTypeEnum)
+        protected StringPattern(FieldTypeEnum fieldTypeEnum) : base(fieldTypeEnum)
         {
 
         }
