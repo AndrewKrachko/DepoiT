@@ -20,8 +20,8 @@ namespace DepoiTEFDataStorage
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(new[]{
-                new User() { Id = 0, Name = "admin", PasswordHash = "123", UserToken = "87h4vhusd1", Email = "admin@mail.com", ObjectToken = @"a(qSa3Y/P{d.-iHDG~n/f.g/""" },
-                new User() { Id = 1, Name = "user", PasswordHash = "321", UserToken = "02vtr39sfd", Email = "user@mail.com", ObjectToken = @"~ex`+Elp.4I@)>#j8Fix'$j-2" }
+                new User() { Id=0, Name="admin", PasswordHash = "AQAAAAEAACcQAAAAEKKBOCdrUFEKQLlXdpRNnryUOg/gypmqO/mFzVx3FwMNjTipxWppGPOaMfix5PlvCA==", UserToken = "87h4vhusd1", Email="admin@mail.com", ObjectToken=@"a(qSa3Y/P{d.-iHDG~n/f.g/""" },
+                new User() { Id=1, Name="user", PasswordHash = "AQAAAAEAACcQAAAAEKKBOCdrUFEKQLlXdpRNnryUOg/gypmqO/mFzVx3FwMNjTipxWppGPOaMfix5PlvCA==", UserToken = "02vtr39sfd", Email="user@mail.com", ObjectToken = @"~ex`+Elp.4I@)>#j8Fix'$j-2" }
                 });
 
         }
