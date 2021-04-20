@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DepoiTEFDataStorage\DepoiTEFDataStorage.csproj" />
     <ProjectReference Include="..\DepoiTFakeDataStorage\DepoiTFakeDataStorage.csproj" />
     <ProjectReference Include="..\DepoiTItems\DepoiTItems.csproj" />
     <ProjectReference Include="..\DepoiTRepository\DepoiTRepository.csproj" />

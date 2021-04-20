@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DepoiTItems
 {
-    public class Depot : DepoiTObject, IDepot
+    public class Depot : DepoiTObject
     {
         public Address Adress { get; set; }
         public GeoCoordinates Coordinates { get; set; }

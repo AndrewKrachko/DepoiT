@@ -1,10 +1,12 @@
-﻿using DepoiTFakeDataStorage;
+﻿using DepoiTEFDataStorage;
+using DepoiTFakeDataStorage;
 using DepoiTItems;
 using DepoiTRepository;
 using Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace DepoitConfigurator
 {
@@ -39,12 +41,22 @@ namespace DepoitConfigurator
             switch (storageType)
             {
                 case "MsSql2016":
-                    throw new Exception("MsSql 2016 Database Implementation is not implemented");
+                    return new EFDataStorage(GetMsSqlConnectionData(repositoryConfig));
                 case "Fake":
                 default:
                     return new FakeDataStorage();
             }
         }
+
+        private static IConnectionData GetMsSqlConnectionData(IEnumerable<Tuple<string, string>> repositoryConfig)
+        {
+            var provider = new ServerProvider() { Name = repositoryConfig.First(cfg => cfg.Item1 == "Server").Item2 };
+            var database = new DataBaseStorage() { Name = repositoryConfig.First(cfg => cfg.Item1 == "DataBase").Item2 };
+            var credentials = new MsSqlLoginPasswordCredentials() { Login = repositoryConfig.First(cfg => cfg.Item1 == "Login").Item2, Password = repositoryConfig.First(cfg => cfg.Item1 == "Password").Item2 };
+
+            return new MsSqlConnectionData(provider, database, credentials);
+        }
+
 
         public static ILogger GetLogger()
         {
